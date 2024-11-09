@@ -17,6 +17,7 @@ float angle = 0.0f, step = 0.01f;
 float totalTime = 0.0f;
 float Globals::frameTime; ////////////////////////////////////////// nu cred ca trb
 Camera camera;
+Matrix MVP;
 
 int Init ( ESContext *esContext )
 {
@@ -49,6 +50,8 @@ void Draw ( ESContext *esContext )
 	Matrix mRotation;
 	mRotation.SetRotationZ(angle);
 
+	MVP = camera.viewMatrix * camera.perspectiveMatrix;
+
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glUseProgram(myShaders.program);
@@ -75,7 +78,7 @@ void Draw ( ESContext *esContext )
 
 	if (myShaders.MVP != -1)
 	{
-		glUniformMatrix4fv(myShaders.MVP, 1, GL_FALSE, (float*)camera.MVP.m);
+		glUniformMatrix4fv(myShaders.MVP, 1, GL_FALSE, (float*)MVP.m);
 	}
 
 
@@ -95,16 +98,6 @@ void Update ( ESContext *esContext, float deltaTime )
 
 		camera.deltaTime = deltaTime;
 		camera.updateWorldView();
-
-		/*for (int i = 0; i <= 3; i++)
-		{
-			for (int j = 0; j <= 3; j++)
-			{
-				printf("%f ", (float)camera.MVP.m[i][j]);
-			}
-			printf("\n");
-		}
-		printf("\n\n");*/
 	}
 
 	angle += step;
@@ -118,11 +111,11 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 		switch (key)
 		{
 			case 'W': case 'w':
-				camera.moveOy(1);
+				camera.moveOz(-1);
 				break;
 
 			case 'S': case 's':
-				camera.moveOy(-1);
+				camera.moveOz(1);
 				break;
 
 			case 'D': case 'd':
@@ -131,6 +124,14 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 			
 			case 'A': case 'a':
 				camera.moveOx(-1);
+				break;
+
+			case 'Q': case 'q':
+				camera.rotateOz(1);
+				break;
+
+			case 'E': case 'e':
+				camera.rotateOz(-1);
 				break;
 
 			case VK_LEFT:
@@ -142,24 +143,19 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 				break;
 
 			case VK_UP:
-				camera.rotateOy(1);
+				camera.rotateOx(1);
 				break;
 
 			case VK_DOWN:
-				camera.rotateOy(-1);
+				camera.rotateOx(-1);
 				break;
 
-			/// pentru teste
-			case 'T': case 't':
-				for (int i = 0; i <= 3; i++)
-				{
-					for (int j = 0; j <= 3; j++)
-					{
-						printf("%f ", (float)camera.MVP.m[i][j]);
-					}
-					printf("\n");
-				}
-				printf("\n\n");
+			case VK_SPACE:
+				camera.moveOy(1);
+				break;
+
+			case VK_CONTROL:
+				camera.moveOy(-1);
 				break;
 		}
 	}

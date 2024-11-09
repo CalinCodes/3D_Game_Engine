@@ -7,32 +7,20 @@
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\NewTrainingFramework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\Resources\\Shaders\\TriangleShaderVS.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:Resources\\Shaders\\TriangleShaderVS.vs||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Globals.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Globals.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Shaders.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Shaders.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,8 +30,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Globals.h",
+              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.h",
+              "RelativeDocumentMoniker": "NewTrainingFramework\\Globals.h",
+              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.h",
+              "RelativeToolTip": "NewTrainingFramework\\Globals.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-09T08:02:26.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Globals.cpp",
+              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.cpp",
+              "RelativeDocumentMoniker": "NewTrainingFramework\\Globals.cpp",
+              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.cpp",
+              "RelativeToolTip": "NewTrainingFramework\\Globals.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-09T08:02:29.419Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -52,35 +66,9 @@
               "RelativeDocumentMoniker": "NewTrainingFramework\\NewTrainingFramework.cpp",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\NewTrainingFramework.cpp",
               "RelativeToolTip": "NewTrainingFramework\\NewTrainingFramework.cpp",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAkwIIAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAArwGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-26T08:00:06.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Globals.h",
-              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.h",
-              "RelativeDocumentMoniker": "NewTrainingFramework\\Globals.h",
-              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.h",
-              "RelativeToolTip": "NewTrainingFramework\\Globals.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T08:07:38.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Globals.cpp",
-              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.cpp",
-              "RelativeDocumentMoniker": "NewTrainingFramework\\Globals.cpp",
-              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Globals.cpp",
-              "RelativeToolTip": "NewTrainingFramework\\Globals.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T09:26:58.995Z",
+              "WhenOpened": "2024-11-09T07:47:36.431Z",
               "EditorCaption": ""
             },
             {
@@ -91,60 +79,22 @@
               "RelativeDocumentMoniker": "NewTrainingFramework\\Camera.h",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h",
               "RelativeToolTip": "NewTrainingFramework\\Camera.h",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T08:29:28.651Z",
+              "WhenOpened": "2024-11-09T07:49:19.124Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Camera.cpp",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp",
               "RelativeDocumentMoniker": "NewTrainingFramework\\Camera.cpp",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp",
               "RelativeToolTip": "NewTrainingFramework\\Camera.cpp",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHMAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAArwGUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-07T14:37:39.033Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Shaders.h",
-              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.h",
-              "RelativeDocumentMoniker": "NewTrainingFramework\\Shaders.h",
-              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.h",
-              "RelativeToolTip": "NewTrainingFramework\\Shaders.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-26T08:39:58.221Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Shaders.cpp",
-              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.cpp",
-              "RelativeDocumentMoniker": "NewTrainingFramework\\Shaders.cpp",
-              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.cpp",
-              "RelativeToolTip": "NewTrainingFramework\\Shaders.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-10-26T08:41:10.821Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TriangleShaderVS.vs",
-              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\Resources\\Shaders\\TriangleShaderVS.vs",
-              "RelativeDocumentMoniker": "Resources\\Shaders\\TriangleShaderVS.vs",
-              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\Resources\\Shaders\\TriangleShaderVS.vs",
-              "RelativeToolTip": "Resources\\Shaders\\TriangleShaderVS.vs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-10-26T08:38:26.608Z",
+              "WhenOpened": "2024-11-09T07:49:09.679Z",
               "EditorCaption": ""
             }
           ]

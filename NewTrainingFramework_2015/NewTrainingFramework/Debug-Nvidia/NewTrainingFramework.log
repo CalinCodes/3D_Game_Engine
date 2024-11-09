@@ -1,6 +1,6 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
   NewTrainingFramework.cpp
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\NewTrainingFramework.cpp(111,30): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\NewTrainingFramework.cpp(104,30): warning C4305: '-=': truncation from 'double' to 'float'
   (compiling source file '/NewTrainingFramework.cpp')
   
   NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe

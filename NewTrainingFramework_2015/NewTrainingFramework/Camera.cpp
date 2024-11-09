@@ -19,10 +19,10 @@ Vector3 Vec4ToVec3(Vector4 vec)
 Camera::Camera()
 {
 	position = Vector3(0.0f, 0.0f, -1.0f); target = Vector3(0.0f, 0.0f, 0.0f); up = Vector3(0.0f, 1.0f, 0.0f);
-	moveSpeed = 0.1f; rotateSpeed = 0.1f;
-	nearPlane = 0.2f; farPlane = 10.0f;
+	moveSpeed = 1.0f; rotateSpeed = 1.0f;
+	nearPlane = 0.2f; farPlane = 100.0f;
 	fov = 0.785398f;
-	perspectiveMatrix.SetPerspective(fov,nearPlane,farPlane,(float)Globals::screenWidth/(float)Globals::screenHeight);
+	perspectiveMatrix.SetPerspective(fov, (float)Globals::screenWidth / (float)Globals::screenHeight, nearPlane,farPlane);
 }
 
 void Camera::updateAxes()
@@ -61,7 +61,7 @@ void Camera::updateWorldView()
 	viewMatrix = T_inv * R_trans;
 
 	//MVP = worldMatrix * viewMatrix * perspectiveMatrix;
-	MVP = viewMatrix;
+	//MVP = viewMatrix;
 
 }
 
