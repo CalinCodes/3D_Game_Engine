@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Globals.h"
-extern float frameTime;
+// extern float frameTime;
 
 Globals::Globals()
 {

@@ -15,7 +15,8 @@ GLuint vboId;
 Shaders myShaders;
 float angle = 0.0f, step = 0.01f;
 float totalTime = 0.0f;
-float Globals::frameTime;
+float Globals::frameTime; ////////////////////////////////////////// nu cred ca trb
+Camera camera;
 
 int Init ( ESContext *esContext )
 {
@@ -72,6 +73,12 @@ void Draw ( ESContext *esContext )
 		glUniformMatrix4fv(myShaders.matrixUniform, 1, GL_FALSE, (float*)mRotation.m);
 	}
 
+	if (myShaders.MVP != -1)
+	{
+		glUniformMatrix4fv(myShaders.MVP, 1, GL_FALSE, (float*)camera.MVP.m);
+	}
+
+
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -85,7 +92,19 @@ void Update ( ESContext *esContext, float deltaTime )
 	if (totalTime >= Globals::frameTime)
 	{
 		totalTime = totalTime - Globals::frameTime;
-		
+
+		camera.deltaTime = deltaTime;
+		camera.updateWorldView();
+
+		/*for (int i = 0; i <= 3; i++)
+		{
+			for (int j = 0; j <= 3; j++)
+			{
+				printf("%f ", (float)camera.MVP.m[i][j]);
+			}
+			printf("\n");
+		}
+		printf("\n\n");*/
 	}
 
 	angle += step;
@@ -94,7 +113,56 @@ void Update ( ESContext *esContext, float deltaTime )
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
-	printf("%c", key);
+	if (bIsPressed == 1)
+	{
+		switch (key)
+		{
+			case 'W': case 'w':
+				camera.moveOy(1);
+				break;
+
+			case 'S': case 's':
+				camera.moveOy(-1);
+				break;
+
+			case 'D': case 'd':
+				camera.moveOx(1);
+				break;
+			
+			case 'A': case 'a':
+				camera.moveOx(-1);
+				break;
+
+			case VK_LEFT:
+				camera.rotateOy(1);
+				break;
+
+			case VK_RIGHT:
+				camera.rotateOy(-1);
+				break;
+
+			case VK_UP:
+				camera.rotateOy(1);
+				break;
+
+			case VK_DOWN:
+				camera.rotateOy(-1);
+				break;
+
+			/// pentru teste
+			case 'T': case 't':
+				for (int i = 0; i <= 3; i++)
+				{
+					for (int j = 0; j <= 3; j++)
+					{
+						printf("%f ", (float)camera.MVP.m[i][j]);
+					}
+					printf("\n");
+				}
+				printf("\n\n");
+				break;
+		}
+	}
 }
 
 void CleanUp()

@@ -4,11 +4,10 @@ class Camera
 {
 public:
 
-	///Matrix M, V, P;
 	Vector3 position, target, up;
 	GLfloat moveSpeed, rotateSpeed, nearPlane, farPlane, fov, deltaTime;
 	Vector3 xAxis, yAxis, zAxis;
-	Matrix viewMatrix, worldMatrix, perspectiveMatrix;
+	Matrix viewMatrix, worldMatrix, perspectiveMatrix, MVP;
 
 	Camera();
 
@@ -19,8 +18,8 @@ public:
 	void moveOy(int sens);
 	void moveOz(int sens);
 
-	void rotateOx(float angle);
-	void rotateOy(float angle);
-	void rotateOz(float angle);
+	void rotateOx(float sens);
+	void rotateOy(float sens);
+	void rotateOz(float sens);
 
 };
