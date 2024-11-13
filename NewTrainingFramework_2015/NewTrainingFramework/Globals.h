@@ -5,7 +5,7 @@ class Globals
 public:
 	static const int screenWidth = 960;
 	static const int screenHeight = 720;
-	static float frameTime;
+	static const float frameTime;
 
 	Globals();
 };

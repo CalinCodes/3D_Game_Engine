@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Globals.h"
-// extern float frameTime;
+
+const float Globals::frameTime = 0.15f;
 
 Globals::Globals()
 {
-	frameTime = 0.05f;
+	
 }
