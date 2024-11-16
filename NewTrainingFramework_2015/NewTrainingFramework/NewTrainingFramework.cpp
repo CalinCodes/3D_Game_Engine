@@ -11,10 +11,11 @@
 
 #define PI 3.14159265358979323846
 
-GLuint vboId,Vbold;
+GLuint vboId,vbold,iboId;
 Shaders myShaders, lineShader;
 float angle = 0.0f, step = 0.01f;
 float totalTime = 0.0f;
+const void* ptr_iboId;
 
 Camera camera;
 Matrix MVP;
@@ -24,24 +25,32 @@ int Init ( ESContext *esContext )
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
 	//triangle data (heap)
-	Vertex verticesData[6];
+	Vertex verticesData[4];
 	Vertex lineVerticesData[2];
+	unsigned short verticesIndex[6];
 
 	verticesData[0].pos.x =  -0.5f;  verticesData[0].pos.y =  0.5f;  verticesData[0].pos.z =  0.0f;
 	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
-	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = 0.5f;  verticesData[2].pos.z =  0.0f;
+	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z =  0.0f;
+	verticesData[3].pos.x = 0.5f;  verticesData[3].pos.y = 0.5f;  verticesData[3].pos.z = 0.0f;
 
 	verticesData[0].color.x = 1.0f; verticesData[0].color.y = 0.0f; verticesData[0].color.z = 0.0f;
 	verticesData[1].color.x = 0.0f; verticesData[1].color.y = 1.0f; verticesData[1].color.z = 0.0f;
 	verticesData[2].color.x = 0.0f; verticesData[2].color.y = 0.0f; verticesData[2].color.z = 1.0f;
-
-	verticesData[3].pos.x = 0.5f;  verticesData[3].pos.y = -0.5f;  verticesData[3].pos.z = 0.0f;
-	verticesData[4].pos.x = 0.5f;  verticesData[4].pos.y = 0.5f;  verticesData[4].pos.z = 0.0f;
-	verticesData[5].pos.x = -0.5f;  verticesData[5].pos.y = -0.5f;  verticesData[5].pos.z = 0.0f;
-
 	verticesData[3].color.x = 1.0f; verticesData[3].color.y = 1.0f; verticesData[3].color.z = 0.0f;
-	verticesData[4].color.x = 0.0f; verticesData[4].color.y = 0.0f; verticesData[4].color.z = 1.0f;
-	verticesData[5].color.x = 0.0f; verticesData[5].color.y = 1.0f; verticesData[5].color.z = 0.0f;
+
+	/*verticesIndex[0] = 1;
+	verticesIndex[1] = 2;
+	verticesIndex[2] = 3;
+	verticesIndex[2] = 4;*/
+
+	verticesIndex[0] = 0;
+	verticesIndex[1] = 1;
+	verticesIndex[2] = 2;
+	verticesIndex[3] = 0;
+	verticesIndex[4] = 2;
+	verticesIndex[5] = 3;
+
 
 	lineVerticesData[0].pos.x = 0.0f;  lineVerticesData[0].pos.y = 1.0f;  lineVerticesData[0].pos.z = 0.0f;
 	lineVerticesData[1].pos.x = 0.0f; lineVerticesData[1].pos.y = -1.0f;  lineVerticesData[1].pos.z = 0.0f;
@@ -54,8 +63,13 @@ int Init ( ESContext *esContext )
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	glGenBuffers(1, &Vbold);
-	glBindBuffer(GL_ARRAY_BUFFER, Vbold);
+	glGenBuffers(1, &iboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(verticesIndex), verticesIndex, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &vbold);
+	glBindBuffer(GL_ARRAY_BUFFER, vbold);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(lineVerticesData), lineVerticesData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -79,6 +93,7 @@ void Draw ( ESContext *esContext )
 	glUseProgram(myShaders.program);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
 
 	
 	if(myShaders.positionAttribute != -1)
@@ -103,11 +118,12 @@ void Draw ( ESContext *esContext )
 		glUniformMatrix4fv(myShaders.MVP, 1, GL_FALSE, (float*)MVP.m);
 	}
 
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	// glDrawArrays(GL_TRIANGLES, 0, 4);
+	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT, ptr_iboId);
 
 	// Drawing lines
 	glUseProgram(lineShader.program);
-	glBindBuffer(GL_ARRAY_BUFFER, Vbold);
+	glBindBuffer(GL_ARRAY_BUFFER, vbold);
 
 	if (lineShader.positionAttribute != -1)
 	{
@@ -141,7 +157,6 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 {
 	if (bIsPressed == 1)
 	{
-		//printf("%c", key);
 		switch (key)
 		{
 			case 'W': case 'w':
@@ -225,6 +240,7 @@ void Mouse(ESContext* esContext, MouseButtons btn, MouseEvents event, int x, int
 void CleanUp()
 {
 	glDeleteBuffers(1, &vboId);
+	glDeleteBuffers(1, &vbold);
 }
 
 int _tmain(int argc, _TCHAR* argv[])

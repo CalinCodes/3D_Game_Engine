@@ -19,7 +19,7 @@ Vector3 Vec4ToVec3(Vector4 vec)
 Camera::Camera()
 {
 	position = Vector3(0.0f, 0.0f, -1.0f); target = Vector3(0.0f, 0.0f, 0.0f); up = Vector3(0.0f, 1.0f, 0.0f);
-	moveSpeed = 8.0f; rotateSpeed = 5.0f;
+	moveSpeed = 8.0f; rotateSpeed = 3.0f;
 	nearPlane = 0.2f; farPlane = 100.0f;
 	fov = 0.785398f;
 	perspectiveMatrix.SetPerspective(fov, (float)Globals::screenWidth / (float)Globals::screenHeight, nearPlane,farPlane);

@@ -1,12 +1,6 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Camera.cpp
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Camera.cpp(70,28): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file '/Camera.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Camera.cpp(80,28): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file '/Camera.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Camera.cpp(90,28): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file '/Camera.cpp')
+  NewTrainingFramework.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\NewTrainingFramework.cpp(153,30): warning C4305: '-=': truncation from 'double' to 'float'
+  (compiling source file '/NewTrainingFramework.cpp')
   
   NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe
