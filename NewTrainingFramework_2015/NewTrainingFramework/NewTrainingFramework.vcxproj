@@ -186,6 +186,8 @@
   <ItemGroup>
     <None Include="..\Resources\Shaders\LineShaderFS.fs" />
     <None Include="..\Resources\Shaders\LineShaderVS.vs" />
+    <None Include="..\Resources\Shaders\ModelShaderFS.fs" />
+    <None Include="..\Resources\Shaders\ModelShaderVS.vs" />
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />
     <None Include="..\..\Readme.doc" />

@@ -8,20 +8,34 @@
 #include <conio.h>
 #include "Globals.h"
 #include "Camera.h"
+#include <vector>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <stdlib.h>
 
 #define PI 3.14159265358979323846
 
-GLuint vboId,vbold,iboId;
-Shaders myShaders, lineShader;
+GLuint vboId,vbold,iboId,modelVboId,modelIboId;
+GLuint textureId;
+Shaders myShaders, lineShader, modelShader;
 float angle = 0.0f, step = 0.01f;
 float totalTime = 0.0f;
 const void* ptr_iboId;
+GLsizei indexCount;
 
 Camera camera;
 Matrix MVP;
 
+void readNfg(std::string nfgPath, std::vector<Vertex> &vertexVector, std::vector<unsigned short> &indexVector);
+
 int Init ( ESContext *esContext )
 {
+	int width, height, bpp;
+	char* pixelArray;
+
+	pixelArray = LoadTGA("../../NewResourcesPacket/Textures/Croco.tga", &width, &height, &bpp);
+
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
 	//triangle data (heap)
@@ -29,7 +43,12 @@ int Init ( ESContext *esContext )
 	Vertex lineVerticesData[2];
 	unsigned short verticesIndex[6];
 
-	verticesData[0].pos.x =  -0.5f;  verticesData[0].pos.y =  0.5f;  verticesData[0].pos.z =  0.0f;
+	std::vector<Vertex> vertexVector;
+	std::vector<unsigned short> indexVector;
+
+	readNfg("../../NewResourcesPacket/Models/Croco.nfg",vertexVector,indexVector);
+
+	/*verticesData[0].pos.x =  -0.5f;  verticesData[0].pos.y =  0.5f;  verticesData[0].pos.z =  0.0f;
 	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
 	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z =  0.0f;
 	verticesData[3].pos.x = 0.5f;  verticesData[3].pos.y = 0.5f;  verticesData[3].pos.z = 0.0f;
@@ -38,11 +57,6 @@ int Init ( ESContext *esContext )
 	verticesData[1].color.x = 0.0f; verticesData[1].color.y = 1.0f; verticesData[1].color.z = 0.0f;
 	verticesData[2].color.x = 0.0f; verticesData[2].color.y = 0.0f; verticesData[2].color.z = 1.0f;
 	verticesData[3].color.x = 1.0f; verticesData[3].color.y = 1.0f; verticesData[3].color.z = 0.0f;
-
-	/*verticesIndex[0] = 1;
-	verticesIndex[1] = 2;
-	verticesIndex[2] = 3;
-	verticesIndex[2] = 4;*/
 
 	verticesIndex[0] = 0;
 	verticesIndex[1] = 1;
@@ -53,11 +67,37 @@ int Init ( ESContext *esContext )
 
 
 	lineVerticesData[0].pos.x = 0.0f;  lineVerticesData[0].pos.y = 1.0f;  lineVerticesData[0].pos.z = 0.0f;
-	lineVerticesData[1].pos.x = 0.0f; lineVerticesData[1].pos.y = -1.0f;  lineVerticesData[1].pos.z = 0.0f;
+	lineVerticesData[1].pos.x = 0.0f; lineVerticesData[1].pos.y = -1.0f;  lineVerticesData[1].pos.z = 0.0f;*/
 	
 
 
 	//buffer object
+	glGenBuffers(1, &modelVboId);
+	glBindBuffer(GL_ARRAY_BUFFER, modelVboId);
+    glBufferData(GL_ARRAY_BUFFER, vertexVector.size() * sizeof(Vertex), vertexVector.data(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glGenBuffers(1, &modelIboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIboId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexVector.size() * sizeof(unsigned short), indexVector.data(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	glGenTextures(1, &textureId);
+	glBindTexture(GL_TEXTURE_2D, textureId);
+	if (bpp == 32)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelArray);
+	else
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelArray);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
 	glGenBuffers(1, &vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW);
@@ -73,8 +113,10 @@ int Init ( ESContext *esContext )
 	glBufferData(GL_ARRAY_BUFFER, sizeof(lineVerticesData), lineVerticesData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+	glEnable(GL_DEPTH_TEST);
 
 	//creation of shaders and program
+	modelShader.Init("../Resources/Shaders/ModelShaderVS.vs", "../Resources/Shaders/ModelShaderFS.fs");
 	lineShader.Init("../Resources/Shaders/LineShaderVS.vs", "../Resources/Shaders/LineShaderFS.fs");
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 
@@ -88,52 +130,91 @@ void Draw ( ESContext *esContext )
 	MVP = camera.viewMatrix * camera.perspectiveMatrix;
 
 	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Drawing triangles
-	glUseProgram(myShaders.program);
+	//glUseProgram(myShaders.program);
 
-	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+	//glBindBuffer(GL_ARRAY_BUFFER, vboId);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
 
-	
-	if(myShaders.positionAttribute != -1)
+	//
+	//if(myShaders.positionAttribute != -1)
+	//{
+	//	glEnableVertexAttribArray(myShaders.positionAttribute);
+	//	glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	//}
+
+	//if(myShaders.colorAttribute != -1)
+	//{
+	//	glEnableVertexAttribArray(myShaders.colorAttribute);
+	//	glVertexAttribPointer(myShaders.colorAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(Vector3));
+	//}
+
+	//if(myShaders.matrixUniform != -1)
+	//{
+	//	glUniformMatrix4fv(myShaders.matrixUniform, 1, GL_FALSE, (float*)mRotation.m);
+	//}
+
+	//if (myShaders.MVP != -1)
+	//{
+	//	glUniformMatrix4fv(myShaders.MVP, 1, GL_FALSE, (float*)MVP.m);
+	//}
+
+	//// glDrawArrays(GL_TRIANGLES, 0, 4);
+	//glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT, ptr_iboId);
+
+	//// Drawing lines
+	//glUseProgram(lineShader.program);
+	//glBindBuffer(GL_ARRAY_BUFFER, vbold);
+
+	//if (lineShader.positionAttribute != -1)
+	//{
+	//	glEnableVertexAttribArray(lineShader.positionAttribute);
+	//	glVertexAttribPointer(lineShader.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	//}
+
+	//glDrawArrays(GL_LINES, 0, 2);
+	glUseProgram(modelShader.program);
+
+	glBindBuffer(GL_ARRAY_BUFFER, modelVboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIboId);
+
+	glBindTexture(GL_TEXTURE_2D, textureId);
+
+	if (modelShader.positionAttribute != -1)
 	{
-		glEnableVertexAttribArray(myShaders.positionAttribute);
-		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+		glEnableVertexAttribArray(modelShader.positionAttribute);
+		glVertexAttribPointer(modelShader.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
 
-	if(myShaders.colorAttribute != -1)
+	if (modelShader.uvAttribute != -1)
 	{
-		glEnableVertexAttribArray(myShaders.colorAttribute);
-		glVertexAttribPointer(myShaders.colorAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(Vector3));
+		glEnableVertexAttribArray(modelShader.uvAttribute);
+		glVertexAttribPointer(modelShader.uvAttribute, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
 	}
 
-	if(myShaders.matrixUniform != -1)
+	if (modelShader.textureUniform != -1)
 	{
-		glUniformMatrix4fv(myShaders.matrixUniform, 1, GL_FALSE, (float*)mRotation.m);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, textureId);
+		glUniform1i(modelShader.textureUniform, 0);
 	}
 
-	if (myShaders.MVP != -1)
+	if (modelShader.MVP != -1)
 	{
-		glUniformMatrix4fv(myShaders.MVP, 1, GL_FALSE, (float*)MVP.m);
+		glUniformMatrix4fv(modelShader.MVP, 1, GL_FALSE, (float*)MVP.m);
 	}
 
-	// glDrawArrays(GL_TRIANGLES, 0, 4);
-	glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_SHORT, ptr_iboId);
-
-	// Drawing lines
-	glUseProgram(lineShader.program);
-	glBindBuffer(GL_ARRAY_BUFFER, vbold);
-
-	if (lineShader.positionAttribute != -1)
+	if (modelShader.textureUniform != -1)
 	{
-		glEnableVertexAttribArray(lineShader.positionAttribute);
-		glVertexAttribPointer(lineShader.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+		glUniform1i(modelShader.textureUniform, 0);
 	}
 
-	glDrawArrays(GL_LINES, 0, 2);
+	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
 }
@@ -149,8 +230,6 @@ void Update ( ESContext *esContext, float deltaTime )
 		camera.updateWorldView();
 	}
 
-	angle += step;
-	if (angle > 2*PI) angle -= 2*PI;
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
@@ -217,16 +296,7 @@ void Mouse(ESContext* esContext, MouseButtons btn, MouseEvents event, int x, int
 		switch (btn)
 		{
 			case LEFT_CLICK:
-				if (x <= Globals::screenWidth/2)
-				{
-					//printf("LEFT SIDE\n");
-					camera.rotateOz(-1);
-				}
-				else
-				{
-					//printf("RIGHT SIDE\n");
-					camera.rotateOz(1);
-				}
+				
 				break;
 			case RIGHT_CLICK:
 				
@@ -252,7 +322,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
     esInitContext ( &esContext );
 
-	esCreateWindow ( &esContext, "Hello Triangle", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
+	esCreateWindow ( &esContext, "3D Game Engine", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
 
 	if ( Init ( &esContext ) != 0 )
 		return 0;
@@ -275,3 +345,92 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+void readNfg(std::string nfgPath, std::vector<Vertex> &vertexVector, std::vector<unsigned short> &indexVector)
+{
+	Vertex aux;
+
+	std::string line;
+	std::ifstream file(nfgPath);
+
+	int nrVertices = 0;
+	std::getline(file, line);
+	
+	nrVertices = std::stoi(&line[12]);
+	for (int i = 0; i < nrVertices; i++)
+	{
+		// pos
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.pos.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.pos.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.pos.z = std::stof(&line[1]);
+
+		// norm
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.norm.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.norm.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.norm.z = std::stof(&line[1]);
+
+		// binorm
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.binorm.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.binorm.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.binorm.z = std::stof(&line[1]);
+
+		// tgt
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.tgt.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.tgt.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.tgt.z = std::stof(&line[1]);
+
+		// uv
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.uv.x = std::stof(&line[0]);
+
+		std::getline(file, line, ']');
+		aux.uv.y = std::stof(&line[1]);
+
+		vertexVector.push_back(aux);
+	}
+	std::getline(file, line);
+
+	std::getline(file, line);
+	indexCount = std::stoi(&line[11]);
+
+	while (std::getline(file, line, ' '))
+	{
+		if (line.length() != 0 && line[line.length() - 1] != '.')
+		{
+			indexVector.push_back((unsigned short)std::stoi(line));
+		}
+
+	}
+
+	file.close();
+	
+}
