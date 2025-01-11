@@ -8,5 +8,4 @@ void main()
 	color = texture2D(u_texture, v_uv);
 	if (color.a<0.1) discard;
 	gl_FragColor = color;
-	//gl_FragColor =vec4(v_uv, 0.0, 1.0);
 }

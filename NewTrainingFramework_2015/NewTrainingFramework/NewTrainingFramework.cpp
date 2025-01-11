@@ -2,6 +2,8 @@
 //
 
 #include "stdafx.h"
+#include "rapidxml.hpp"
+#include "rapidxml_utils.hpp"
 #include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
 #include "Vertex.h"
 #include "Shaders.h"
@@ -13,6 +15,7 @@
 #include <string>
 #include <cstring>
 #include <stdlib.h>
+
 
 #define PI 3.14159265358979323846
 
