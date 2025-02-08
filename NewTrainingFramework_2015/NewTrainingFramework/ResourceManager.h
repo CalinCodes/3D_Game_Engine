@@ -2,6 +2,13 @@
 #include "../Utilities/Math.h"
 #include <map>
 #include <string>
+#include <fstream>
+#include <vector>
+#include <cstring>
+#include "Vertex.h"
+#include "rapidxml.hpp"
+#include "rapidxml_utils.hpp"
+#include "Shaders.h"
 
 struct ModelResource {
 	std::string file;
@@ -58,17 +65,17 @@ public:
 	void freeResources();//eliberarea zonelor de memorie alocate dinamic - se poate realiza si in destructor
 	~ResourceManager();
 
-	std::map<int, ModelResource*> models;
-	std::map<int, TextureResource*> textures;
-	std::map<int, ShaderResource*> shaders;
+	std::map<int, ModelResource*> modelResources;
+	std::map<int, TextureResource*> textureResources;
+	std::map<int, ShaderResource*> shaderResources;
 
-	std::map<int, ModelResource*> loadedModels;
-	std::map<int, TextureResource*> loadedTextures;
-	std::map<int, ShaderResource*> loadedShaders;
+	std::map<int, Model*> loadedModels;
+	std::map<int, Texture*> loadedTextures;
+	std::map<int, Shader*> loadedShaders;
 
-	void loadModel(Model model);
-	void loadTexture(Texture texture);
-	void loadShader(Shader shader);
+	Model* loadModel(int id);
+	Texture* loadTexture(int id);
+	Shader* loadShader(int id);
 
 };
 
