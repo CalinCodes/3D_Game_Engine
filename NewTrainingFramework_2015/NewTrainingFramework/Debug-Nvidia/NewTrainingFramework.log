@@ -1,4 +1,62 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  SceneManager.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(68,15): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(79,6): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(81,29): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(82,25): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(85,6): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(87,29): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(88,25): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(91,6): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(95,15): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(98,6): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(100,22): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(103,6): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(105,15): error C2065: 'modelShader': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(108,31): error C2065: 'indexCount': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,17): error C2065: 'esContext': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,40): error C2065: 'esContext': undeclared identifier
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,2): error C2660: 'eglSwapBuffers': function does not take 1 arguments
+  (compiling source file '/SceneManager.cpp')
+      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\Include\Nvidia\EGL\egl.h(312,31):
+      see declaration of 'eglSwapBuffers'
+      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,2):
+      while trying to match the argument list '()'
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(123,20): warning C4018: '<': signed/unsigned mismatch
+  (compiling source file '/SceneManager.cpp')
+  
   NewTrainingFramework.cpp
-Camera.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-  NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe
+  Generating Code...

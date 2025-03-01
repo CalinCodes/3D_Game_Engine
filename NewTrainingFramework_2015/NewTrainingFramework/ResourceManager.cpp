@@ -104,6 +104,7 @@ void ResourceManager::Init()
 					sr->fileVS = Res + path.substr(path.find('/')) + shader->first_node("vs")->value();
 					sr->fileFS = Res + path.substr(path.find('/')) + shader->first_node("fs")->value();
 					shaderResources.insert(std::pair<int, ShaderResource*>(std::stoi(shader->first_attribute("id")->value()), sr));
+
 					shader = shader->next_sibling();
 				}
 			}

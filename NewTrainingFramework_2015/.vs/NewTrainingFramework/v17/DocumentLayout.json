@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\NewTrainingFramework.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\SceneManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\SceneManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\SceneManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\SceneManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\ResourceManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -14,28 +26,24 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Calin\\Desktop\\proiect_2015\\XML\\resourceManager.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Shaders.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Shaders.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Camera.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\Resources\\Shaders\\ModelShaderFS.fs||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:Resources\\Shaders\\ModelShaderFS.fs||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Shaders.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Shaders.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\Resources\\Shaders\\modelShaderVS.vs||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -44,6 +52,9 @@
     {
       "AbsoluteMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Vertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC024EC8-32F4-4657-A2CB-14D2B3A931F8}|NewTrainingFramework\\NewTrainingFramework.vcxproj|solutionrelative:NewTrainingFramework\\Vertex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Calin\\Desktop\\proiect_2015\\XML\\sceneManager.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,7 +74,7 @@
               "RelativeDocumentMoniker": "NewTrainingFramework\\NewTrainingFramework.cpp",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\NewTrainingFramework.cpp",
               "RelativeToolTip": "NewTrainingFramework\\NewTrainingFramework.cpp",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAAD4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAowIwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-09T07:47:36.431Z",
               "IsPinned": true,
@@ -76,56 +87,84 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ResourceManager.h",
-              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.h",
-              "RelativeDocumentMoniker": "NewTrainingFramework\\ResourceManager.h",
-              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.h",
-              "RelativeToolTip": "NewTrainingFramework\\ResourceManager.h",
-              "ViewState": "AgIAACQAAAAAAAAAAAApwBUAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-07T08:56:26.66Z",
+              "Title": "SceneManager.cpp",
+              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\SceneManager.cpp",
+              "RelativeDocumentMoniker": "NewTrainingFramework\\SceneManager.cpp",
+              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\SceneManager.cpp",
+              "RelativeToolTip": "NewTrainingFramework\\SceneManager.cpp",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAGMAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-01T08:02:02.239Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "SceneManager.h",
+              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\SceneManager.h",
+              "RelativeDocumentMoniker": "NewTrainingFramework\\SceneManager.h",
+              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\SceneManager.h",
+              "RelativeToolTip": "NewTrainingFramework\\SceneManager.h",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAABUAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-01T08:01:48.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ResourceManager.cpp",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.cpp",
               "RelativeDocumentMoniker": "NewTrainingFramework\\ResourceManager.cpp",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.cpp",
               "RelativeToolTip": "NewTrainingFramework\\ResourceManager.cpp",
-              "ViewState": "AgIAAAgBAAAAAAAAAAApwBMBAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAPQAAAAAAAAAAAAowPIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-07T08:56:47.685Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
+              "Title": "ResourceManager.h",
+              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.h",
+              "RelativeDocumentMoniker": "NewTrainingFramework\\ResourceManager.h",
+              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\ResourceManager.h",
+              "RelativeToolTip": "NewTrainingFramework\\ResourceManager.h",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAowBUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-07T08:56:26.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Camera.h",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h",
               "RelativeDocumentMoniker": "NewTrainingFramework\\Camera.h",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.h",
               "RelativeToolTip": "NewTrainingFramework\\Camera.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-30T07:53:18.018Z"
+              "WhenOpened": "2024-11-30T07:53:18.018Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Camera.cpp",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp",
               "RelativeDocumentMoniker": "NewTrainingFramework\\Camera.cpp",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Camera.cpp",
               "RelativeToolTip": "NewTrainingFramework\\Camera.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAUwDYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-16T08:00:28.989Z"
+              "WhenOpened": "2024-11-16T08:00:28.989Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "Shaders.h",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.h",
               "RelativeDocumentMoniker": "NewTrainingFramework\\Shaders.h",
@@ -138,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Shaders.cpp",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Shaders.cpp",
               "RelativeDocumentMoniker": "NewTrainingFramework\\Shaders.cpp",
@@ -146,7 +185,8 @@
               "RelativeToolTip": "NewTrainingFramework\\Shaders.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-30T08:41:51.027Z"
+              "WhenOpened": "2024-11-30T08:41:51.027Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -158,11 +198,12 @@
               "RelativeToolTip": "Resources\\Shaders\\ModelShaderFS.fs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-30T07:34:52.171Z"
+              "WhenOpened": "2024-11-30T07:34:52.171Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "ModelShaderVS.vs",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\Resources\\Shaders\\ModelShaderVS.vs",
               "RelativeDocumentMoniker": "Resources\\Shaders\\ModelShaderVS.vs",
@@ -170,32 +211,46 @@
               "RelativeToolTip": "Resources\\Shaders\\ModelShaderVS.vs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-30T07:34:55.712Z"
+              "WhenOpened": "2024-11-30T07:34:55.712Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Vertex.h",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Vertex.h",
               "RelativeDocumentMoniker": "NewTrainingFramework\\Vertex.h",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\NewTrainingFramework_2015\\NewTrainingFramework\\Vertex.h",
               "RelativeToolTip": "NewTrainingFramework\\Vertex.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-30T10:09:58.744Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "resourceManager.xml",
               "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\XML\\resourceManager.xml",
               "RelativeDocumentMoniker": "..\\XML\\resourceManager.xml",
               "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\XML\\resourceManager.xml",
               "RelativeToolTip": "..\\XML\\resourceManager.xml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
               "WhenOpened": "2025-02-08T08:18:00.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "sceneManager.xml",
+              "DocumentMoniker": "C:\\Users\\Calin\\Desktop\\proiect_2015\\XML\\sceneManager.xml",
+              "RelativeDocumentMoniker": "..\\XML\\sceneManager.xml",
+              "ToolTip": "C:\\Users\\Calin\\Desktop\\proiect_2015\\XML\\sceneManager.xml",
+              "RelativeToolTip": "..\\XML\\sceneManager.xml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAHsAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-03-01T08:21:59.555Z",
               "EditorCaption": ""
             }
           ]

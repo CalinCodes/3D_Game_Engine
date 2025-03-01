@@ -16,6 +16,7 @@
 #include <cstring>
 #include <stdlib.h>
 #include "ResourceManager.h"
+#include "SceneManager.h"
 
 
 #define PI 3.14159265358979323846
@@ -23,11 +24,12 @@
 GLuint vboId,vbold,iboId,modelVboId,modelIboId;
 GLuint textureId;
 Shaders myShaders, lineShader, modelShader;
-float angle = 0.0f, step = 0.01f;
+//float angle = 0.0f, step = 0.01f;
 float totalTime = 0.0f;
 const void* ptr_iboId;
 GLsizei indexCount;
 ResourceManager* rm;
+SceneManager* sm;
 
 Camera camera;
 Matrix MVP;
@@ -36,6 +38,7 @@ void readNfg(std::string nfgPath, std::vector<Vertex> &vertexVector, std::vector
 
 int Init ( ESContext *esContext )
 {
+
 	rm = ResourceManager::getInstance();
 	rm->Init();
 	int width, height, bpp;
@@ -87,7 +90,7 @@ int Init ( ESContext *esContext )
 	//creation of shaders and program
 	modelShader.Init("../Resources/Shaders/ModelShaderVS.vs", "../Resources/Shaders/ModelShaderFS.fs");
 	lineShader.Init("../Resources/Shaders/LineShaderVS.vs", "../Resources/Shaders/LineShaderFS.fs");
-	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
+	// myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 	
 	
 	return 0;
@@ -95,9 +98,6 @@ int Init ( ESContext *esContext )
 
 void Draw ( ESContext *esContext )
 {
-	Matrix mRotation;
-	mRotation.SetRotationZ(angle);
-
 	MVP = camera.viewMatrix * camera.perspectiveMatrix;
 
 	glClear(GL_COLOR_BUFFER_BIT);
