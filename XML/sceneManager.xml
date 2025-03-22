@@ -111,7 +111,7 @@
 			</lights>
 			-->
 		</object>
-		<object id="3">
+    <!--object id="3">
 			
 			<model>5</model>
 			<shader>10</shader>
@@ -138,7 +138,7 @@
 				<y>1.0</y>
 				<z>1.0</z>
 			</scale>
-			<!--
+			<!
 			Exemple de alte configurari care vor fi adaugate si parsate mai tarziu (pentru taskuri ulterioare)
 			<followingCamera>
 				<cameras>
@@ -160,9 +160,8 @@
 			<lights>
 				<light>1</light>
 			</lights>
-			-->
-		</object>
-		
+		</object -->
+		<!--
 		<object id="8">
 			<model>generated</model>
 			<shader>8</shader>
@@ -171,7 +170,6 @@
 			<textures>
 				<texture id="14"/>
 				<texture id="15"/>
-				<!-- TO DO adaugati texturile-->
 			</textures>
 			<position>
 				<x>1.5</x>
@@ -189,6 +187,32 @@
 				<z>1.0</z>
 			</scale>
 		</object>
+    -->
+    <!--object id="7">
+
+      <model>5</model>
+      <shader>10</shader>
+      <type>normal</type>
+      <name>Bus</name>
+      <textures>
+        <texture id="5"/>
+      </textures>
+      <position>
+        <x>50</x>
+        <y>27</y>
+        <z>21.22</z>
+      </position>
+      <rotation>
+        <x>0.5</x>
+        <y>1.4</y>
+        <z>1</z>
+      </rotation>
+      <scale>
+        <x>1.0</x>
+        <y>1.0</y>
+        <z>1.0</z>
+      </scale>
+     </object-->
 	</objects>
 	
 	<!--

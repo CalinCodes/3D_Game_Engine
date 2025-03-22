@@ -1,62 +1,14 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
   SceneManager.cpp
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(68,15): error C2065: 'modelShader': undeclared identifier
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
   (compiling source file '/SceneManager.cpp')
+      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(15,19):
+          see reference to class template instantiation 'rapidxml::file<char>' being compiled
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(28,9):
+          while compiling class template member function 'rapidxml::file<char>::file(const char *)'
+              C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(15,23):
+              see the first reference to 'rapidxml::file<char>::file' in 'SceneManager::Init'
   
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(79,6): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(81,29): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(82,25): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(85,6): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(87,29): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(88,25): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(91,6): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(95,15): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(98,6): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(100,22): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(103,6): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(105,15): error C2065: 'modelShader': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(108,31): error C2065: 'indexCount': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,17): error C2065: 'esContext': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,40): error C2065: 'esContext': undeclared identifier
-  (compiling source file '/SceneManager.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,2): error C2660: 'eglSwapBuffers': function does not take 1 arguments
-  (compiling source file '/SceneManager.cpp')
-      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\Include\Nvidia\EGL\egl.h(312,31):
-      see declaration of 'eglSwapBuffers'
-      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(113,2):
-      while trying to match the argument list '()'
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(123,20): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file '/SceneManager.cpp')
-  
-  NewTrainingFramework.cpp
-  Generating Code...
+  NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe

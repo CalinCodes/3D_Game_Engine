@@ -48,7 +48,8 @@ class Shader
 {
 public:
 	ShaderResource *sr;
-	GLuint program;
+	GLuint program, vertexShader, fragmentShader;
+	GLint positionAttribute, colorAttribute, matrixUniform, MVP, textureUniform, uvAttribute;
 	Shader();
 	~Shader();
 	void Load();

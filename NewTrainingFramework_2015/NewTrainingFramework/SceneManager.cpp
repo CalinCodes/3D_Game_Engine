@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 
+//float totalTime = 0.0f;
+SceneManager* SceneManager::spInstance = NULL;
+
+SceneManager::SceneManager()
+{
+
+}
+
 void SceneManager::Init()
 {
 	ResourceManager* rm = ResourceManager::getInstance();
@@ -12,6 +20,13 @@ void SceneManager::Init()
 	rapidxml::xml_document<> doc;
 	doc.parse<0>(buffer);
 	rapidxml::xml_node<>* root = doc.first_node("sceneManager");
+
+	///
+	Camera* camera = new Camera();
+	cameras.push_back(camera);
+
+	///
+
 	for (rapidxml::xml_node<>* node = root->first_node(); node; node = node->next_sibling())
 	{
 		if (strcmp(node->name(), "cameras") == 0)
@@ -36,81 +51,33 @@ void SceneManager::Init()
 				so->scale.x = std::stof(object->first_node("scale")->first_node("x")->value());
 				so->scale.y = std::stof(object->first_node("scale")->first_node("y")->value());
 				so->scale.z = std::stof(object->first_node("scale")->first_node("z")->value());
-				so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
-				so->shader = rm->loadedShaders[std::stoi(object->first_node("shader")->value())];
 				so->type = object->first_node("type")->value();
 				so->name = object->first_node("name")->value();
-				so->depth_test = std::stoi(object->first_node("depth_test")->value());
+				//so->depth_test = std::stoi(object->first_node("depth_test")->value());
+
+				if (so->type == "normal")
+				{
+					rm->loadModel(std::stoi(object->first_node("model")->value()));
+					rm->loadShader(std::stoi(object->first_node("shader")->value()));
+
+					so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
+				}
+
+				so->shader = rm->loadedShaders[std::stoi(object->first_node("shader")->value())];
 
 				int k = 0;
 				for (rapidxml::xml_node<>* texture = object->first_node("textures")->first_node("texture"); texture; texture = texture->next_sibling())
 				{
-					so->textures[k] = rm->loadedTextures[std::stoi(texture->first_attribute("id")->value())];
+					rm->loadTexture(std::stoi(texture->first_attribute("id")->value()));
+					so->textures.push_back(rm->loadedTextures[std::stoi(texture->first_attribute("id")->value())]);
 					k++;
 				}
+				
 
-				objects.push_back(so);
+				objects.insert(std::pair<int, SceneObject*>(so->id, so));
 			}
 		}
-		delete[] buffer;
 	}
-}
-
-void SceneManager::sendCommonData()
-{
-	Camera* camera = getActiveCamera();
-	Matrix MVP = camera->viewMatrix * camera->perspectiveMatrix;
-	ResourceManager* rm = ResourceManager::getInstance();
-
-	glClear(GL_COLOR_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glUseProgram(modelShader.program);
-
-	//glBindBuffer(GL_ARRAY_BUFFER, modelVboId);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIboId);
-
-	glBindBuffer(GL_ARRAY_BUFFER, rm->loadedModels[1]->vboId);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rm->loadedModels[1]->iboId);
-
-	//glBindTexture(GL_TEXTURE_2D, textureId);
-	glBindTexture(GL_TEXTURE_2D, rm->loadedTextures[4]->textureId);
-
-	if (modelShader.positionAttribute != -1)
-	{
-		glEnableVertexAttribArray(modelShader.positionAttribute);
-		glVertexAttribPointer(modelShader.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	}
-
-	if (modelShader.uvAttribute != -1)
-	{
-		glEnableVertexAttribArray(modelShader.uvAttribute);
-		glVertexAttribPointer(modelShader.uvAttribute, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
-	}
-
-	if (modelShader.textureUniform != -1)
-	{
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, rm->loadedTextures[4]->textureId);
-		glUniform1i(modelShader.textureUniform, 0);
-	}
-
-	if (modelShader.MVP != -1)
-	{
-		glUniformMatrix4fv(modelShader.MVP, 1, GL_FALSE, (float*)MVP.m);
-	}
-
-	if (modelShader.textureUniform != -1)
-	{
-		glUniform1i(modelShader.textureUniform, 0);
-	}
-
-	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
 Camera* SceneManager::getActiveCamera()
@@ -118,10 +85,91 @@ Camera* SceneManager::getActiveCamera()
 	return cameras[activeCamera];
 }
 
-void SceneManager::Draw()
+void SceneManager::Draw(ESContext *esContext)
 {
-	for (int i = 0; i < objects.size(); i++)
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	std::map<int, SceneObject*>::iterator it = objects.begin();
+	while (it != objects.end())
 	{
-		sendCommonData();
+		it->second->Draw(esContext);
+		it++;
 	}
+
+	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
+}
+
+SceneManager* SceneManager::getInstance()
+{
+	if (!spInstance)
+	{
+		spInstance = new SceneManager();
+	}
+	return spInstance;
+
+}
+
+void SceneObject::Draw(ESContext* esContext)
+{
+	sendCommonData(esContext);
+	sendSpecificData(esContext);
+}
+
+void SceneObject::sendCommonData(ESContext* esContext)
+{
+	SceneManager* sm = SceneManager::getInstance();
+	Camera* camera = sm->getActiveCamera();
+	Matrix MVP = camera->viewMatrix * camera->perspectiveMatrix;
+	ResourceManager* rm = ResourceManager::getInstance();
+
+	glUseProgram(shader->program);
+
+	glBindBuffer(GL_ARRAY_BUFFER, model->iboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
+
+	int i = 0;
+	std::vector<Texture*>::iterator it = textures.begin();
+	while (it != textures.end())
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, textures[i]->textureId);
+		glUniform1i(shader->textureUniform, i);
+		i++; it++;
+	}
+
+	if (shader->positionAttribute != -1)
+	{
+		glEnableVertexAttribArray(shader->positionAttribute);
+		glVertexAttribPointer(shader->positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	}
+
+	if (shader->uvAttribute != -1)
+	{
+		glEnableVertexAttribArray(shader->uvAttribute);
+		glVertexAttribPointer(shader->uvAttribute, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
+	}
+
+	if (shader->MVP != -1)
+	{
+		glUniformMatrix4fv(shader->MVP, 1, GL_FALSE, (float*)MVP.m);
+	}
+
+	if (shader->textureUniform != -1)
+	{
+		glUniform1i(shader->textureUniform, 0);
+	}
+
+	glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_SHORT, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void SceneObject::sendSpecificData(ESContext* esContext)
+{
+}
+
+void SceneObject::Update(float deltaTime)
+{
+
 }

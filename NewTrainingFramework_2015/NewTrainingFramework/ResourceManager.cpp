@@ -5,7 +5,7 @@
 void readNfg(std::string nfgPath, std::vector<Vertex>& vertexVector, std::vector<unsigned short>& indexVector);
 char* LoadTGA(const char* szFileName, int* width, int* height, int* bpp);
 
-ResourceManager *ResourceManager::spInstance = NULL;
+ResourceManager* ResourceManager::spInstance = NULL;
 
 ResourceManager::ResourceManager()
 {
@@ -14,33 +14,33 @@ ResourceManager::ResourceManager()
 
 void ResourceManager::Init()
 {
-    rapidxml::file<> file("../../XML/resourceManager.xml");
-    char* buffer = new char[file.size() + 1];
-    std::memcpy(buffer, file.data(), file.size());
-    buffer[file.size()] = '\0';
+	rapidxml::file<> file("../../XML/resourceManager.xml");
+	char* buffer = new char[file.size() + 1];
+	std::memcpy(buffer, file.data(), file.size());
+	buffer[file.size()] = '\0';
 
-    rapidxml::xml_document<> doc;
-    doc.parse<0>(buffer);
-    rapidxml::xml_node<>* root = doc.first_node("resourceManager");
-    char Res[] = "../../NewResourcesPacket";
-    for (rapidxml::xml_node<>* node = root->first_node(); node; node = node->next_sibling()) {
-        if (strcmp(node->name(), "models") == 0)
-        {
-            for (rapidxml::xml_node<>* folder = node->first_node("folder"); folder; folder = folder->next_sibling())
-            {
-                std::string path = folder->first_attribute("path")->value();
-                rapidxml::xml_node<>* model = folder->first_node("model");
-                while (model)
-                {
-                    ModelResource* mr = new ModelResource();
-                    mr->file = Res + path.substr(path.find('/')) + model->first_node("file")->value();
-                    modelResources.insert(std::pair<int, ModelResource*>(std::stoi(model->first_attribute("id")->value()), mr));
-                    model = model->next_sibling();
-                }
-            }
-        }
-        else if (strcmp(node->name(), "textures") == 0)
-        {
+	rapidxml::xml_document<> doc;
+	doc.parse<0>(buffer);
+	rapidxml::xml_node<>* root = doc.first_node("resourceManager");
+	char Res[] = "../../NewResourcesPacket";
+	for (rapidxml::xml_node<>* node = root->first_node(); node; node = node->next_sibling()) {
+		if (strcmp(node->name(), "models") == 0)
+		{
+			for (rapidxml::xml_node<>* folder = node->first_node("folder"); folder; folder = folder->next_sibling())
+			{
+				std::string path = folder->first_attribute("path")->value();
+				rapidxml::xml_node<>* model = folder->first_node("model");
+				while (model)
+				{
+					ModelResource* mr = new ModelResource();
+					mr->file = Res + path.substr(path.find('/')) + model->first_node("file")->value();
+					modelResources.insert(std::pair<int, ModelResource*>(std::stoi(model->first_attribute("id")->value()), mr));
+					model = model->next_sibling();
+				}
+			}
+		}
+		else if (strcmp(node->name(), "textures") == 0)
+		{
 			for (rapidxml::xml_node<>* folder = node->first_node("folder"); folder; folder = folder->next_sibling())
 			{
 				std::string path = folder->first_attribute("path")->value();
@@ -91,9 +91,9 @@ void ResourceManager::Init()
 					texture = texture->next_sibling();
 				}
 			}
-        }
-        else if (strcmp(node->name(), "shaders") == 0)
-        {
+		}
+		else if (strcmp(node->name(), "shaders") == 0)
+		{
 			for (rapidxml::xml_node<>* folder = node->first_node("folder"); folder; folder = folder->next_sibling())
 			{
 				std::string path = folder->first_attribute("path")->value();
@@ -108,9 +108,9 @@ void ResourceManager::Init()
 					shader = shader->next_sibling();
 				}
 			}
-        }
-    }
-    delete[] buffer;
+		}
+	}
+	delete[] buffer;
 }
 
 ResourceManager* ResourceManager::getInstance()
@@ -270,7 +270,7 @@ void Texture::Load()
 {
 	int width, height, bpp;
 	char* pixelArray;
-	
+
 	pixelArray = LoadTGA((tr->file).c_str(), &width, &height, &bpp);
 
 	glGenTextures(1, &textureId);
@@ -297,11 +297,36 @@ Shader::Shader()
 Shader::~Shader()
 {
 	delete sr;
+	glDeleteProgram(program);
 }
 
 void Shader::Load()
 {
-	Shaders shader;
-    shader.Init(const_cast<char*>(sr->fileVS.c_str()), const_cast<char*>(sr->fileFS.c_str()));
-	program = shader.program;
+	char* charFileVS = new char;
+	char* charFileFS = new char;
+	charFileVS = (char*)(sr->fileVS.c_str());
+	charFileFS = (char*)(sr->fileFS.c_str());
+
+	vertexShader = esLoadShader(GL_VERTEX_SHADER, charFileVS);
+
+	if (vertexShader == 0);
+	///return -1;
+
+	fragmentShader = esLoadShader(GL_FRAGMENT_SHADER, charFileFS);
+
+	if (fragmentShader == 0)
+	{
+		glDeleteShader(vertexShader);
+		///return -2;
+	}
+
+	program = esLoadProgram(vertexShader, fragmentShader);
+
+	positionAttribute = glGetAttribLocation(program, "a_posL");
+	colorAttribute = glGetAttribLocation(program, "a_color");
+	matrixUniform = glGetUniformLocation(program, "u_rotation");
+	textureUniform = glGetUniformLocation(program, "u_texture");
+	uvAttribute = glGetAttribLocation(program, "a_uv");
+
+	MVP = glGetUniformLocation(program, "uMVP");
 }

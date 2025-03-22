@@ -11,6 +11,8 @@
 #include "Shaders.h"
 #include "ResourceManager.h"
 #include "Camera.h"
+#include "Globals.h"
+
 
 class SceneObject {
 public:
@@ -20,10 +22,16 @@ public:
 	Vector3 scale;
 	Model *model;
 	Shader *shader;
-	Texture **textures;
+	std::vector<Texture*> textures;
 	std::string type;
 	std::string name;
 	int depth_test;
+
+	void Draw(ESContext *esContext);
+	void sendCommonData(ESContext* esContext);
+	void sendSpecificData(ESContext *esContext);
+	void Update(float deltaTime);
+
 };
 
 class SceneManager
@@ -35,13 +43,10 @@ public:
 	void Init();
 	static SceneManager* getInstance();
 	void InitWindow();
-	void Draw();
+	void Draw(ESContext *esContext);
 	void Update(float deltaTime);
 
-	void sendCommonData();
-	void sendSpecificData();
-
-	std::vector<SceneObject*> objects;
+	std::map<int, SceneObject*> objects;
 	std::vector<Camera*> cameras;
 	
 	Camera* getActiveCamera();

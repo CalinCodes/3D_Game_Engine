@@ -8,6 +8,9 @@
 			<model id="5">
 				<file>Bila.nfg</file>
 			</model>
+      <model id="6">
+        <file>bus.nfg</file>
+      </model>
 		</folder>
 
 		<!-- un tag folder doar specifica folderul comun pentru un grup de modele (pot sa le am in mai multe foldere)
@@ -22,13 +25,13 @@
 	<shaders>
 		<folder path="Res/Shaders/">
 			<shader id="10">
-				<vs>modelShader.vs</vs>
-				<fs>modelShader.fs</fs>
+				<vs>ModelShaderVS.vs</vs>
+				<fs>ModelShaderFS.fs</fs>
 			</shader>
-			<shader id="3">
+      <!--shader id="3">
 				<vs>terrainShader.vs</vs>
 				<fs>terrainShader.fs</fs>
-			</shader>
+			</shader-->
 		<!-- si aici se adauga toate shaderele -->
 		</folder>
 		
