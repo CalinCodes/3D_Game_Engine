@@ -23,6 +23,7 @@ Camera::Camera()
 	nearPlane = 0.2f; farPlane = 1500.0f;
 	fov = 0.785398f;
 	perspectiveMatrix.SetPerspective(fov, (float)Globals::screenWidth / (float)Globals::screenHeight, nearPlane,farPlane);
+	updateWorldView();
 }
 
 void Camera::updateAxes()

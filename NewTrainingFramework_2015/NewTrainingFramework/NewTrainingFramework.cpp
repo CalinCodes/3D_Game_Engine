@@ -30,14 +30,13 @@ GLsizei indexCount;
 ResourceManager* rm;
 SceneManager* sm;
 
-Camera camera;
+Camera *camera;
 Matrix MVP;
 
 void readNfg(std::string nfgPath, std::vector<Vertex> &vertexVector, std::vector<unsigned short> &indexVector);
 
 int Init ( ESContext *esContext )
 {
-
 	rm = ResourceManager::getInstance();
 	rm->Init();
 	int width, height, bpp;
@@ -47,21 +46,23 @@ int Init ( ESContext *esContext )
 
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
-	//rm->loadModel(1);
-	//rm->loadTexture(4);
-	//rm->loadShader(10);
-
 	sm = SceneManager::getInstance();
 	sm->Init();
-	modelShader = *(rm->loadedShaders[10]);
-	
+	camera = sm->getActiveCamera();
+
+
+
 	glEnable(GL_DEPTH_TEST);
 
 	return 0;
 }
 void Draw ( ESContext *esContext )
 {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	sm->Draw(esContext);
+
+	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 
 	//MVP = camera.viewMatrix * camera.perspectiveMatrix;
 
@@ -118,15 +119,7 @@ void Draw ( ESContext *esContext )
 
 void Update ( ESContext *esContext, float deltaTime )
 {
-	totalTime += deltaTime;
-	if (totalTime >= Globals::frameTime)
-	{
-		totalTime = totalTime - Globals::frameTime;
-
-		camera.deltaTime = deltaTime;
-		camera.updateWorldView();
-	}
-
+	sm->Update(deltaTime);
 }
 
 void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
@@ -136,54 +129,55 @@ void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
 		switch (key)
 		{
 			case 'W': case 'w':
-				camera.moveOz(-1);
+				camera->moveOz(-1);
 				break;
 
 			case 'S': case 's':
-				camera.moveOz(1);
+				camera->moveOz(1);
 				break;
 
 			case 'D': case 'd':
-				camera.moveOx(1);
+				camera->moveOx(1);
 				break;
 			
 			case 'A': case 'a':
-				camera.moveOx(-1);
+				camera->moveOx(-1);
 				break;
 
 			case 'Q': case 'q':
-				camera.rotateOz(1);
+				camera->rotateOz(1);
 				break;
 
 			case 'E': case 'e':
-				camera.rotateOz(-1);
+				camera->rotateOz(-1);
 				break;
 
 			case VK_LEFT:
-				camera.rotateOy(1);
+				camera->rotateOy(1);
 				break;
 
 			case VK_RIGHT:
-				camera.rotateOy(-1);
+				camera->rotateOy(-1);
 				break;
 
 			case VK_UP:
-				camera.rotateOx(1);
+				camera->rotateOx(1);
 				break;
 
 			case VK_DOWN:
-				camera.rotateOx(-1);
+				camera->rotateOx(-1);
 				break;
 
 			case VK_SPACE:
-				camera.moveOy(1);
+				camera->moveOy(1);
 				break;
 
 			case VK_CONTROL:
-				camera.moveOy(-1);
+				camera->moveOy(-1);
 				break;
 		}
 	}
+	
 }
 
 void Mouse(ESContext* esContext, MouseButtons btn, MouseEvents event, int x, int y)

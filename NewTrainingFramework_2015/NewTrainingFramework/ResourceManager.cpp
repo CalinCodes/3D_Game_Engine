@@ -240,7 +240,7 @@ void Model::Load()
 
 	readNfg(this->mr->file, vertexVector, indexVector);
 
-	int indexCount = indexVector.size();
+	this->indexCount = indexVector.size();
 	int vertexCount = vertexVector.size();
 
 	glGenBuffers(1, &vboId);

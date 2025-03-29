@@ -11,6 +11,8 @@ SceneManager::SceneManager()
 
 void SceneManager::Init()
 {
+	totalTime = 0.0f;
+
 	ResourceManager* rm = ResourceManager::getInstance();
 	rapidxml::file<> file("../../XML/sceneManager.xml");
 	char* buffer = new char[file.size() + 1];
@@ -87,16 +89,25 @@ Camera* SceneManager::getActiveCamera()
 
 void SceneManager::Draw(ESContext *esContext)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
 	std::map<int, SceneObject*>::iterator it = objects.begin();
 	while (it != objects.end())
 	{
 		it->second->Draw(esContext);
 		it++;
 	}
+}
 
-	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
+void SceneManager::Update(float deltaTime)
+{
+	Camera* camera = getActiveCamera();
+	totalTime += deltaTime;
+	if (totalTime >= Globals::frameTime)
+	{
+		totalTime = totalTime - Globals::frameTime;
+
+		camera->deltaTime = deltaTime;
+		camera->updateWorldView();
+	}
 }
 
 SceneManager* SceneManager::getInstance()
@@ -113,18 +124,29 @@ void SceneObject::Draw(ESContext* esContext)
 {
 	sendCommonData(esContext);
 	sendSpecificData(esContext);
+
+	glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_SHORT, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void SceneObject::sendCommonData(ESContext* esContext)
 {
 	SceneManager* sm = SceneManager::getInstance();
 	Camera* camera = sm->getActiveCamera();
-	Matrix MVP = camera->viewMatrix * camera->perspectiveMatrix;
+
+	Matrix translationMatrix, modelMatrix, xRotationMatrix, yRotationMatrix, zRotationMatrix;
+	translationMatrix.SetTranslation(position);
+	xRotationMatrix.SetRotationX(rotation.x);
+	yRotationMatrix.SetRotationY(rotation.y);
+	zRotationMatrix.SetRotationZ(rotation.z);
+	modelMatrix = xRotationMatrix * yRotationMatrix * zRotationMatrix * translationMatrix;
+	
+	Matrix MVP = modelMatrix * camera->viewMatrix * camera->perspectiveMatrix;
 	ResourceManager* rm = ResourceManager::getInstance();
 
 	glUseProgram(shader->program);
 
-	glBindBuffer(GL_ARRAY_BUFFER, model->iboId);
+	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
 
 	int i = 0;
@@ -159,9 +181,6 @@ void SceneObject::sendCommonData(ESContext* esContext)
 		glUniform1i(shader->textureUniform, 0);
 	}
 
-	glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_SHORT, 0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//glBindTexture(GL_TEXTURE_2D, 0);
 }
 
@@ -171,5 +190,5 @@ void SceneObject::sendSpecificData(ESContext* esContext)
 
 void SceneObject::Update(float deltaTime)
 {
-
+	
 }

@@ -13,7 +13,6 @@
 #include "Camera.h"
 #include "Globals.h"
 
-
 class SceneObject {
 public:
 	int id;
@@ -51,6 +50,7 @@ public:
 	
 	Camera* getActiveCamera();
 	int activeCamera = 0;
+	float totalTime;
 };
 
 

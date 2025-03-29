@@ -73,7 +73,7 @@
 				<texture id="4"/>
 			</textures>
 			<position>
-				<x>20.5</x>
+				<x>220.5</x>
 				<y>27</y>
 				<z>21.22</z>
 			</position>
@@ -111,6 +111,31 @@
 			</lights>
 			-->
 		</object>
+    <object id="8">
+
+      <model>1</model>
+      <shader>10</shader>
+      <type>normal</type>
+      <name>Crocodil_verde2</name>
+      <textures>
+        <texture id="4"/>
+      </textures>
+      <position>
+        <x>20.5</x>
+        <y>0</y>
+        <z>121.22</z>
+      </position>
+      <rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </rotation>
+      <scale>
+        <x>1.0</x>
+        <y>1.0</y>
+        <z>1.0</z>
+      </scale>
+    </object>
     <!--object id="3">
 			
 			<model>5</model>
@@ -188,9 +213,9 @@
 			</scale>
 		</object>
     -->
-    <!--object id="7">
+    <object id="7">
 
-      <model>5</model>
+      <model>6</model>
       <shader>10</shader>
       <type>normal</type>
       <name>Bus</name>
@@ -198,21 +223,21 @@
         <texture id="5"/>
       </textures>
       <position>
-        <x>50</x>
-        <y>27</y>
+        <x>-220.5</x>
+        <y>57</y>
         <z>21.22</z>
       </position>
       <rotation>
-        <x>0.5</x>
-        <y>1.4</y>
-        <z>1</z>
+        <x>1</x>
+        <y>0</y>
+        <z>0</z>
       </rotation>
       <scale>
         <x>1.0</x>
         <y>1.0</y>
         <z>1.0</z>
       </scale>
-     </object-->
+     </object>
 	</objects>
 	
 	<!--
