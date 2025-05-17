@@ -39,17 +39,12 @@ int Init ( ESContext *esContext )
 {
 	rm = ResourceManager::getInstance();
 	rm->Init();
-	int width, height, bpp;
-	char* pixelArray;
-
-	pixelArray = LoadTGA("../../NewResourcesPacket/Textures/Croco.tga", &width, &height, &bpp);
 
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 
 	sm = SceneManager::getInstance();
 	sm->Init();
 	camera = sm->getActiveCamera();
-
 
 
 	glEnable(GL_DEPTH_TEST);
@@ -63,58 +58,6 @@ void Draw ( ESContext *esContext )
 	sm->Draw(esContext);
 
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
-
-	//MVP = camera.viewMatrix * camera.perspectiveMatrix;
-
-	//glClear(GL_COLOR_BUFFER_BIT);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	//glUseProgram(modelShader.program);
-
-	////glBindBuffer(GL_ARRAY_BUFFER, modelVboId);
-	////glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, modelIboId);
-
-	//glBindBuffer(GL_ARRAY_BUFFER, rm->loadedModels[1]->vboId);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rm->loadedModels[1]->iboId);
-
-	////glBindTexture(GL_TEXTURE_2D, textureId);
-	//glBindTexture(GL_TEXTURE_2D, rm->loadedTextures[4]->textureId);
-
-	//if (modelShader.positionAttribute != -1)
-	//{
-	//	glEnableVertexAttribArray(modelShader.positionAttribute);
-	//	glVertexAttribPointer(modelShader.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	//}
-	//
-	//if (modelShader.uvAttribute != -1)
-	//{
-	//	glEnableVertexAttribArray(modelShader.uvAttribute);
-	//	glVertexAttribPointer(modelShader.uvAttribute, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv));
-	//}
-
-	//if (modelShader.textureUniform != -1)
-	//{
-	//	glActiveTexture(GL_TEXTURE0);
-	//	glBindTexture(GL_TEXTURE_2D, rm->loadedTextures[4]->textureId);
-	//	glUniform1i(modelShader.textureUniform, 0);
-	//}
-
-	//if (modelShader.MVP != -1)
-	//{
-	//	glUniformMatrix4fv(modelShader.MVP, 1, GL_FALSE, (float*)MVP.m);
-	//}
-
-	//if (modelShader.textureUniform != -1)
-	//{
-	//	glUniform1i(modelShader.textureUniform, 0);
-	//}
-
-	//glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
-
-	//glBindBuffer(GL_ARRAY_BUFFER, 0);
-	//glBindTexture(GL_TEXTURE_2D, 0);
-
-	//eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
 }
 
 void Update ( ESContext *esContext, float deltaTime )

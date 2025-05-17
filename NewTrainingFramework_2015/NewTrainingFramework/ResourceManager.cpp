@@ -310,14 +310,14 @@ void Shader::Load()
 	vertexShader = esLoadShader(GL_VERTEX_SHADER, charFileVS);
 
 	if (vertexShader == 0);
-	///return -1;
+	//return;
 
 	fragmentShader = esLoadShader(GL_FRAGMENT_SHADER, charFileFS);
 
 	if (fragmentShader == 0)
 	{
 		glDeleteShader(vertexShader);
-		///return -2;
+		//return;
 	}
 
 	program = esLoadProgram(vertexShader, fragmentShader);
@@ -325,8 +325,17 @@ void Shader::Load()
 	positionAttribute = glGetAttribLocation(program, "a_posL");
 	colorAttribute = glGetAttribLocation(program, "a_color");
 	matrixUniform = glGetUniformLocation(program, "u_rotation");
-	textureUniform = glGetUniformLocation(program, "u_texture");
 	uvAttribute = glGetAttribLocation(program, "a_uv");
+	uv2Attribute = glGetAttribLocation(program, "a_uv2");
+	heightUniform = glGetUniformLocation(program, "u_height");
+
+	for (int i = 0; i < MAX_TEXTURES; i++) {
+		std::string uniformName = "u_texture_" + std::to_string(i);
+		textureUniform[i] = glGetUniformLocation(program, uniformName.c_str());
+	}
 
 	MVP = glGetUniformLocation(program, "uMVP");
+	uvOffsetUniform = glGetUniformLocation(program, "u_uvOffset");
+
+
 }

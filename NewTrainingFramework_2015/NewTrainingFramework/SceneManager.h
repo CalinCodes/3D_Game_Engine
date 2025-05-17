@@ -27,9 +27,9 @@ public:
 	int depth_test;
 
 	void Draw(ESContext *esContext);
-	void sendCommonData(ESContext* esContext);
+	virtual void sendCommonData(ESContext* esContext);
 	void sendSpecificData(ESContext *esContext);
-	void Update(float deltaTime);
+	virtual void Update(float deltaTime);
 
 };
 
@@ -53,4 +53,13 @@ public:
 	float totalTime;
 };
 
-
+class Terrain : public SceneObject {
+public:
+	const int nrCells = 100, dimCell = 10, offsetY = -100;
+	Vector3 terrainHeights;
+	Vector2 uvOffset;
+	void generateModel();
+	void sendCommonData(ESContext* esContext) override;
+	void Update(float deltaTime) override;
+	Terrain(SceneObject* so);
+};

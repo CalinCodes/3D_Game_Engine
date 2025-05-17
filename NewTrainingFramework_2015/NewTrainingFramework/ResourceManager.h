@@ -10,6 +10,8 @@
 #include "rapidxml_utils.hpp"
 #include "Shaders.h"
 
+#define MAX_TEXTURES 5
+
 struct ModelResource {
 	std::string file;
 };
@@ -49,7 +51,9 @@ class Shader
 public:
 	ShaderResource *sr;
 	GLuint program, vertexShader, fragmentShader;
-	GLint positionAttribute, colorAttribute, matrixUniform, MVP, textureUniform, uvAttribute;
+	GLint positionAttribute, colorAttribute, matrixUniform, MVP;
+	GLint textureUniform[MAX_TEXTURES], uvAttribute, uv2Attribute;
+	GLint heightUniform, uvOffsetUniform;
 	Shader();
 	~Shader();
 	void Load();

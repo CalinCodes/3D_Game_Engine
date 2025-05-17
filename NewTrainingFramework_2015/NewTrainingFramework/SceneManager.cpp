@@ -57,14 +57,7 @@ void SceneManager::Init()
 				so->name = object->first_node("name")->value();
 				//so->depth_test = std::stoi(object->first_node("depth_test")->value());
 
-				if (so->type == "normal")
-				{
-					rm->loadModel(std::stoi(object->first_node("model")->value()));
-					rm->loadShader(std::stoi(object->first_node("shader")->value()));
-
-					so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
-				}
-
+				rm->loadShader(std::stoi(object->first_node("shader")->value()));
 				so->shader = rm->loadedShaders[std::stoi(object->first_node("shader")->value())];
 
 				int k = 0;
@@ -75,8 +68,26 @@ void SceneManager::Init()
 					k++;
 				}
 				
+				if (so->type == "normal")
+				{
+					rm->loadModel(std::stoi(object->first_node("model")->value()));
 
-				objects.insert(std::pair<int, SceneObject*>(so->id, so));
+					so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
+
+					objects.insert(std::pair<int, SceneObject*>(so->id, so));
+				}
+				else if (so->type == "terrain")
+				{
+					Terrain* terrain = new Terrain(so);
+
+					rapidxml::xml_node<>* heightsNode = object->first_node("heights");
+					float heightR = std::stof(heightsNode->first_node("r")->value());
+					float heightG = std::stof(heightsNode->first_node("g")->value());
+					float heightB = std::stof(heightsNode->first_node("b")->value());
+					terrain->terrainHeights = Vector3(heightR, heightG, heightB);
+
+					objects.insert(std::pair<int, SceneObject*>(terrain->id, terrain));
+				}
 			}
 		}
 	}
@@ -107,6 +118,12 @@ void SceneManager::Update(float deltaTime)
 
 		camera->deltaTime = deltaTime;
 		camera->updateWorldView();
+	}
+	std::map<int, SceneObject*>::iterator it = objects.begin();
+	while (it != objects.end())
+	{
+		it->second->Update(deltaTime);
+		it++;
 	}
 }
 
@@ -149,20 +166,23 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
 
-	int i = 0;
-	std::vector<Texture*>::iterator it = textures.begin();
-	while (it != textures.end())
+	for(int i = 0; i < textures.size() && i < MAX_TEXTURES; i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i);
 		glBindTexture(GL_TEXTURE_2D, textures[i]->textureId);
-		glUniform1i(shader->textureUniform, i);
-		i++; it++;
+		glUniform1i(shader->textureUniform[i], i);
 	}
 
 	if (shader->positionAttribute != -1)
 	{
 		glEnableVertexAttribArray(shader->positionAttribute);
 		glVertexAttribPointer(shader->positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	}
+
+	if (shader->uv2Attribute != -1)
+	{
+		glEnableVertexAttribArray(shader->uv2Attribute);
+		glVertexAttribPointer(shader->uv2Attribute, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, uv2));
 	}
 
 	if (shader->uvAttribute != -1)
@@ -176,19 +196,15 @@ void SceneObject::sendCommonData(ESContext* esContext)
 		glUniformMatrix4fv(shader->MVP, 1, GL_FALSE, (float*)MVP.m);
 	}
 
-	if (shader->textureUniform != -1)
-	{
-		glUniform1i(shader->textureUniform, 0);
-	}
-
 	//glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void SceneObject::sendSpecificData(ESContext* esContext)
-{
+void SceneObject::sendSpecificData(ESContext* esContext)  
+{  
+    
 }
 
 void SceneObject::Update(float deltaTime)
 {
-	
+	return;
 }

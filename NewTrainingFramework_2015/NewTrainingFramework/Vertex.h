@@ -6,7 +6,7 @@ struct Vertex
 	Vector3 pos;
 	Vector3 color;
 	Vector3 norm, binorm, tgt;
-	Vector2 uv;
+	Vector2 uv, uv2;
 
 	Vertex() : pos(0.0f, 0.0f, 0.0f), color(0.0f, 0.0f, 0.0f), norm(0.0f, 0.0f, 0.0f), binorm(0.0f, 0.0f, 0.0f), tgt(0.0f, 0.0f, 0.0f), uv(0.0f, 0.0f) {}
 
@@ -18,5 +18,6 @@ struct Vertex
 		binorm.x = v.binorm.x; binorm.y = v.binorm.y; binorm.z = v.binorm.z;
 		tgt.x = v.tgt.x; tgt.y = v.tgt.y; tgt.z = v.tgt.z;
 		uv.x = v.uv.x; uv.y = v.uv.y;
+		uv2.x = v.uv2.x; uv2.y = v.uv2.y;
 	}
 };
