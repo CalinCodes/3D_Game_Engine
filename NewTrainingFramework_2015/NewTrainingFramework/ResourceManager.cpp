@@ -327,9 +327,12 @@ void Texture::Load()
 
 void Shader::SetFogParameters(Vector3& fogColor, float smallRadius, float largeRadius)
 {
-	glUniform3f(fogColorUniform, fogColor.x, fogColor.y, fogColor.z);
-	glUniform1f(smallRadiusUniform, smallRadius);
-	glUniform1f(largeRadiusUniform, largeRadius);
+	if (fogColorUniform != -1)
+		glUniform3f(fogColorUniform, fogColor.x, fogColor.y, fogColor.z);
+	if (smallRadiusUniform != -1)
+		glUniform1f(smallRadiusUniform, smallRadius);
+	if (largeRadiusUniform != -1)
+		glUniform1f(largeRadiusUniform, largeRadius);
 }
 
 Shader::Shader()
@@ -369,12 +372,12 @@ void Shader::Load()
 	uv2Attribute = glGetAttribLocation(program, "a_uv2");
 	uvAttribute = glGetAttribLocation(program, "a_uv");
 
-	fogColorUniform = glGetUniformLocation(program, "u_fogColor");
 	smallRadiusUniform = glGetUniformLocation(program, "u_smallRadius");
 	largeRadiusUniform = glGetUniformLocation(program, "u_largeRadius");
 	cameraPosUniform = glGetUniformLocation(program, "u_cameraPos");
+	fogColorUniform = glGetUniformLocation(program, "u_fogColor");
 
-	modelMatrixUniform = glGetUniformLocation(program, "u_modelMatrix");
+	modelMatrixUniform = glGetUniformLocation(program, "u_model");
 
 	for (int i = 0; i < MAX_TEXTURES; i++) {
 		std::string uniformName = "u_texture_" + std::to_string(i);

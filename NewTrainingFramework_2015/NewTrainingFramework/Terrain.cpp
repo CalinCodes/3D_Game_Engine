@@ -117,6 +117,15 @@ void Terrain::sendCommonData(ESContext* esContext)
 	if (shader->uvOffsetUniform != -1) {
 		glUniform2f(shader->uvOffsetUniform, uvOffset.x, uvOffset.y);
 	}
+
+	if (shader->cameraPosUniform != -1) {
+		glUniform3f(shader->cameraPosUniform, camera->position.x, camera->position.y, camera->position.z);
+	}
+
+	if (shader->modelMatrixUniform != -1)
+	{
+		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
+	}
 }
 
 void Terrain::Update(float deltaTime)

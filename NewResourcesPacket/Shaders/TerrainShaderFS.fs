@@ -4,6 +4,7 @@ varying vec3 v_worldPos;
 
 varying vec2 v_uv, v_uv2;
 uniform vec2 u_uvOffset;
+uniform mat4 u_model;
 
 uniform sampler2D u_texture_0; // BlendMap
 uniform sampler2D u_texture_1; // Rock
@@ -24,9 +25,11 @@ void main()
 
     vec4 c_final = c_dirt * c_blend.r + c_rock * c_blend.g + c_grass * c_blend.g;
 
-    float d = length(u_cameraPos - v_worldPos);
+    float d = distance(u_cameraPos, v_worldPos);
     float alpha = clamp((d - u_smallRadius) / (u_largeRadius - u_smallRadius), 0.0, 1.0);
     vec3 foggedColor = mix(c_final.rgb, u_fogColor, alpha);
-
+    
     gl_FragColor = vec4(foggedColor.rgb, 1.0);
+    //alpha = (d - u_smallRadius)/(u_largeRadius - u_smallRadius);
+    //gl_FragColor = vec4(alpha, 0.0, 0.0, 1.0);
 }

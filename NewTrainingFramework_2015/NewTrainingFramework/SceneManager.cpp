@@ -31,6 +31,16 @@ void SceneManager::Init()
 
 	for (rapidxml::xml_node<>* node = root->first_node(); node; node = node->next_sibling())
 	{
+		if (strcmp(node->name(), "fog") == 0)
+		{
+			rapidxml::xml_node<>* colorNode = node->first_node("color");
+			fogColor.x = std::stof(colorNode->first_node("r")->value());
+			fogColor.y = std::stof(colorNode->first_node("g")->value());
+			fogColor.z = std::stof(colorNode->first_node("b")->value());
+
+			smallRadius = std::stof(node->first_node("smallRadius")->value());
+			largeRadius = std::stof(node->first_node("largeRadius")->value());
+		}
 		if (strcmp(node->name(), "cameras") == 0)
 		{
 			for (rapidxml::xml_node<>* folder = node->first_node("camera"); folder; folder = folder->next_sibling())
@@ -147,10 +157,10 @@ SceneManager* SceneManager::getInstance()
 
 void SceneObject::Draw(ESContext* esContext)
 {
-	Vector3 fogColor(1.0f, 0.5f, 0.5f);
-	shader->SetFogParameters(fogColor, 50.0f, 100.0f);
+	SceneManager* sm = SceneManager::getInstance();
 
 	sendCommonData(esContext);
+	shader->SetFogParameters(sm->fogColor, sm->smallRadius, sm->largeRadius);
 	sendSpecificData(esContext);
 
 	glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_SHORT, 0);
@@ -207,7 +217,7 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	{
 		glUniformMatrix4fv(shader->MVP, 1, GL_FALSE, (float*)MVP.m);
 	}
-
+	/*
 	if (shader->cameraPosUniform != -1) {
 		glUniform3f(shader->cameraPosUniform, camera->position.x, camera->position.y, camera->position.z);
 	}
@@ -216,8 +226,7 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	{
 		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
 	}
-
-	//glBindTexture(GL_TEXTURE_2D, 0);
+	*/
 }
 
 void SceneObject::sendSpecificData(ESContext* esContext)  

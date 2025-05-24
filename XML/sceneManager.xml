@@ -64,8 +64,8 @@
       <g>0.5</g>
       <b>0.5</b>
     </color>
-    <smallRadius>50.0</smallRadius>
-    <largeRadius>100.0</largeRadius>
+    <smallRadius>200.0</smallRadius>
+    <largeRadius>400.0</largeRadius>
   </fog>
 	
 	<objects>
@@ -242,7 +242,7 @@
         <z>0</z>
       </position>
       <rotation>
-        <x>0.0</x>
+        <x>3.141592653</x>
         <y>0.0</y>
         <z>0.0</z>
       </rotation>

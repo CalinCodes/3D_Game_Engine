@@ -1,3 +1,4 @@
+precision mediump float;
 attribute vec3 a_posL,a_color;
 attribute vec2 a_uv, a_uv2;
 
@@ -22,7 +23,7 @@ void main()
 
 	new_pos.y += c_blend.r * u_height.r + c_blend.g * u_height.g + c_blend.b * u_height.b;
 
-	v_worldPos = vec3(u_model * new_pos);
+	v_worldPos = (u_model * vec4(a_posL, 1.0)).xyz;
 
 	gl_Position = uMVP * new_pos;
 	v_color = a_color;

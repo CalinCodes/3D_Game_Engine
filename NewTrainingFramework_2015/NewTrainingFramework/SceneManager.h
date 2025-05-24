@@ -51,6 +51,8 @@ public:
 	Camera* getActiveCamera();
 	int activeCamera = 0;
 	float totalTime;
+	Vector3 fogColor;
+	float smallRadius, largeRadius;
 };
 
 class Terrain : public SceneObject {
