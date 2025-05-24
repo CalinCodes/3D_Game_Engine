@@ -87,6 +87,11 @@ void ResourceManager::Init()
 						tr->wrap_t = GL_REPEAT;
 					}
 
+					if (texture->first_node("type"))
+					{
+						tr->type = texture->first_node("type")->value();
+					}
+
 					textureResources.insert(std::pair<int, TextureResource*>(std::stoi(texture->first_attribute("id")->value()), tr));
 					texture = texture->next_sibling();
 				}
@@ -259,6 +264,7 @@ void Model::Load()
 Texture::Texture()
 {
 	tr = new TextureResource();
+	tr->type = "normal";
 }
 
 Texture::~Texture()
@@ -273,20 +279,57 @@ void Texture::Load()
 
 	pixelArray = LoadTGA((tr->file).c_str(), &width, &height, &bpp);
 
+	GLenum textureType = (tr->type == "cube") ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D;
 	glGenTextures(1, &textureId);
-	glBindTexture(GL_TEXTURE_2D, textureId);
-	if (bpp == 32)
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelArray);
-	else
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelArray);
+	glBindTexture(textureType, textureId);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, tr->wrap_s);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, tr->wrap_t);
+	glTexParameteri(textureType, GL_TEXTURE_WRAP_S, tr->wrap_s);
+	glTexParameteri(textureType, GL_TEXTURE_WRAP_T, tr->wrap_t);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, tr->min_filter);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, tr->mag_filter);
+	glTexParameteri(textureType, GL_TEXTURE_MIN_FILTER, tr->min_filter);
+	glTexParameteri(textureType, GL_TEXTURE_MAG_FILTER, tr->mag_filter);
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+	if (textureType == GL_TEXTURE_CUBE_MAP) {
+		int bytesPerPixel = bpp / 8;
+		int faceWidth = width / 4;
+		int faceHeight = height / 3;
+
+		int xOffsets[6] = { 2, 0, 1, 1, 1, 3 };
+		int yOffsets[6] = { 1, 1, 0, 2, 1, 1 };
+
+		for (int face = 0; face < 6; face++) {
+			int xOffset = xOffsets[face] * faceWidth;
+			int yOffset = yOffsets[face] * faceHeight;
+			char* subBuffer = new char[faceWidth * faceHeight * bytesPerPixel];
+			for (int row = 0; row < faceHeight; row++) {
+				memcpy(
+					subBuffer + row * faceWidth * bytesPerPixel,
+					pixelArray + ((yOffset + row) * width + xOffset) * bytesPerPixel,
+					faceWidth * bytesPerPixel
+				);
+			}
+			GLenum faceTarget = GL_TEXTURE_CUBE_MAP_POSITIVE_X + face;
+			GLenum format = (bytesPerPixel == 4) ? GL_RGBA : GL_RGB;
+			glTexImage2D(
+				faceTarget, 0, format,
+				faceWidth, faceHeight, 0, format, GL_UNSIGNED_BYTE, subBuffer
+			);
+			delete[] subBuffer;
+		}
+	}
+	else {
+		if (bpp == 32)
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelArray);
+		else
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixelArray);
+	}
+}
+
+void Shader::SetFogParameters(Vector3& fogColor, float smallRadius, float largeRadius)
+{
+	glUniform3f(fogColorUniform, fogColor.x, fogColor.y, fogColor.z);
+	glUniform1f(smallRadiusUniform, smallRadius);
+	glUniform1f(largeRadiusUniform, largeRadius);
 }
 
 Shader::Shader()
@@ -309,25 +352,29 @@ void Shader::Load()
 
 	vertexShader = esLoadShader(GL_VERTEX_SHADER, charFileVS);
 
-	if (vertexShader == 0);
-	//return;
-
 	fragmentShader = esLoadShader(GL_FRAGMENT_SHADER, charFileFS);
 
 	if (fragmentShader == 0)
 	{
 		glDeleteShader(vertexShader);
-		//return;
+		return;
 	}
 
 	program = esLoadProgram(vertexShader, fragmentShader);
 
-	positionAttribute = glGetAttribLocation(program, "a_posL");
-	colorAttribute = glGetAttribLocation(program, "a_color");
 	matrixUniform = glGetUniformLocation(program, "u_rotation");
-	uvAttribute = glGetAttribLocation(program, "a_uv");
-	uv2Attribute = glGetAttribLocation(program, "a_uv2");
+	positionAttribute = glGetAttribLocation(program, "a_posL");
 	heightUniform = glGetUniformLocation(program, "u_height");
+	colorAttribute = glGetAttribLocation(program, "a_color");
+	uv2Attribute = glGetAttribLocation(program, "a_uv2");
+	uvAttribute = glGetAttribLocation(program, "a_uv");
+
+	fogColorUniform = glGetUniformLocation(program, "u_fogColor");
+	smallRadiusUniform = glGetUniformLocation(program, "u_smallRadius");
+	largeRadiusUniform = glGetUniformLocation(program, "u_largeRadius");
+	cameraPosUniform = glGetUniformLocation(program, "u_cameraPos");
+
+	modelMatrixUniform = glGetUniformLocation(program, "u_modelMatrix");
 
 	for (int i = 0; i < MAX_TEXTURES; i++) {
 		std::string uniformName = "u_texture_" + std::to_string(i);
@@ -337,5 +384,95 @@ void Shader::Load()
 	MVP = glGetUniformLocation(program, "uMVP");
 	uvOffsetUniform = glGetUniformLocation(program, "u_uvOffset");
 
+
+}
+
+void readNfg(std::string nfgPath, std::vector<Vertex>& vertexVector, std::vector<unsigned short>& indexVector)
+{
+	Vertex aux;
+
+	std::string line;
+	std::ifstream file(nfgPath);
+
+	int nrVertices = 0;
+	std::getline(file, line);
+
+	nrVertices = std::stoi(&line[12]);
+	for (int i = 0; i < nrVertices; i++)
+	{
+		// pos
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.pos.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.pos.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.pos.z = std::stof(&line[1]);
+
+		// norm
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.norm.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.norm.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.norm.z = std::stof(&line[1]);
+
+		// binorm
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.binorm.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.binorm.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.binorm.z = std::stof(&line[1]);
+
+		// tgt
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.tgt.x = std::stof(&line[0]);
+
+		std::getline(file, line, ',');
+		aux.tgt.y = std::stof(&line[1]);
+
+		std::getline(file, line, ']');
+		aux.tgt.z = std::stof(&line[1]);
+
+		// uv
+		std::getline(file, line, '[');
+
+		std::getline(file, line, ',');
+		aux.uv.x = std::stof(&line[0]);
+
+		std::getline(file, line, ']');
+		aux.uv.y = std::stof(&line[1]);
+
+		vertexVector.push_back(aux);
+	}
+	std::getline(file, line);
+
+	std::getline(file, line);
+	//indexCount = std::stoi(&line[11]);
+
+	while (std::getline(file, line, ' '))
+	{
+		if (line.length() != 0 && line[line.length() - 1] != '.')
+		{
+			indexVector.push_back((unsigned short)std::stoi(line));
+		}
+
+	}
+
+	file.close();
 
 }

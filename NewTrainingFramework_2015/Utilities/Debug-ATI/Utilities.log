@@ -1,1 +1,19 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.Cpp.Platform.targets(67,5): error MSB8020: The build tools for v140 (Platform Toolset = 'v140') cannot be found. To build using the v140 build tools, please install v140 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  stdafx.cpp
+cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  esUtil_win.cpp
+  esUtil.cpp
+  esShader.cpp
+  TGA.cpp
+  Math.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\Utilities\Math.cpp(10,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file '/Math.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\Utilities\Math.cpp(104,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file '/Math.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\Utilities\Math.cpp(208,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  (compiling source file '/Math.cpp')
+  
+  Generating Code...
+  Utilities.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-ATI\Utilities.lib

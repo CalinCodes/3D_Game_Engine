@@ -18,6 +18,7 @@ struct ModelResource {
 
 struct TextureResource {
 	std::string file;
+	std::string type;
 	int min_filter, mag_filter, wrap_s, wrap_t;
 };
 
@@ -54,6 +55,9 @@ public:
 	GLint positionAttribute, colorAttribute, matrixUniform, MVP;
 	GLint textureUniform[MAX_TEXTURES], uvAttribute, uv2Attribute;
 	GLint heightUniform, uvOffsetUniform;
+	GLint fogColorUniform, smallRadiusUniform, largeRadiusUniform;
+	GLint cameraPosUniform, modelMatrixUniform;
+	void SetFogParameters(Vector3& fogColor, float smallRadius, float largeRadius);
 	Shader();
 	~Shader();
 	void Load();

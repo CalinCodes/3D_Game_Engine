@@ -26,7 +26,7 @@ public:
 	std::string name;
 	int depth_test;
 
-	void Draw(ESContext *esContext);
+	virtual void Draw(ESContext *esContext);
 	virtual void sendCommonData(ESContext* esContext);
 	void sendSpecificData(ESContext *esContext);
 	virtual void Update(float deltaTime);
@@ -62,4 +62,22 @@ public:
 	void sendCommonData(ESContext* esContext) override;
 	void Update(float deltaTime) override;
 	Terrain(SceneObject* so);
+};
+
+class SkyBox : public SceneObject {
+public:
+	void sendCommonData(ESContext* esContext) override;
+	void Update(float deltaTime) override;
+	SkyBox(SceneObject* so);
+};
+
+class Fire : public SceneObject {
+public:
+	float u_DispMax;
+	float u_Time;
+	clock_t lastClock;
+	float speedFactor;
+	Fire();
+	void Update(float deltaTime) override;
+	void Draw(ESContext* esContext) override;
 };

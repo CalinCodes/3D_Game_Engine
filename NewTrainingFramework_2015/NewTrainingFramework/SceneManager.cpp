@@ -55,7 +55,7 @@ void SceneManager::Init()
 				so->scale.z = std::stof(object->first_node("scale")->first_node("z")->value());
 				so->type = object->first_node("type")->value();
 				so->name = object->first_node("name")->value();
-				//so->depth_test = std::stoi(object->first_node("depth_test")->value());
+				// so->depth_test = std::stoi(object->first_node("depth_test")->value());
 
 				rm->loadShader(std::stoi(object->first_node("shader")->value()));
 				so->shader = rm->loadedShaders[std::stoi(object->first_node("shader")->value())];
@@ -87,6 +87,14 @@ void SceneManager::Init()
 					terrain->terrainHeights = Vector3(heightR, heightG, heightB);
 
 					objects.insert(std::pair<int, SceneObject*>(terrain->id, terrain));
+				}
+				else if (so->type == "skybox")
+				{
+					rm->loadModel(std::stoi(object->first_node("model")->value()));
+					so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
+					
+					SkyBox* skybox = new SkyBox(so);
+					objects.insert(std::pair<int, SceneObject*>(skybox->id, skybox));
 				}
 			}
 		}
@@ -139,6 +147,9 @@ SceneManager* SceneManager::getInstance()
 
 void SceneObject::Draw(ESContext* esContext)
 {
+	Vector3 fogColor(1.0f, 0.5f, 0.5f);
+	shader->SetFogParameters(fogColor, 50.0f, 100.0f);
+
 	sendCommonData(esContext);
 	sendSpecificData(esContext);
 
@@ -151,12 +162,13 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	SceneManager* sm = SceneManager::getInstance();
 	Camera* camera = sm->getActiveCamera();
 
-	Matrix translationMatrix, modelMatrix, xRotationMatrix, yRotationMatrix, zRotationMatrix;
+	Matrix scaleMatrix, translationMatrix, modelMatrix, xRotationMatrix, yRotationMatrix, zRotationMatrix;
+	scaleMatrix.SetScale(scale.x, scale.y, scale.z);
 	translationMatrix.SetTranslation(position);
 	xRotationMatrix.SetRotationX(rotation.x);
 	yRotationMatrix.SetRotationY(rotation.y);
 	zRotationMatrix.SetRotationZ(rotation.z);
-	modelMatrix = xRotationMatrix * yRotationMatrix * zRotationMatrix * translationMatrix;
+	modelMatrix = scaleMatrix * xRotationMatrix * yRotationMatrix * zRotationMatrix * translationMatrix;
 	
 	Matrix MVP = modelMatrix * camera->viewMatrix * camera->perspectiveMatrix;
 	ResourceManager* rm = ResourceManager::getInstance();
@@ -194,6 +206,15 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	if (shader->MVP != -1)
 	{
 		glUniformMatrix4fv(shader->MVP, 1, GL_FALSE, (float*)MVP.m);
+	}
+
+	if (shader->cameraPosUniform != -1) {
+		glUniform3f(shader->cameraPosUniform, camera->position.x, camera->position.y, camera->position.z);
+	}
+
+	if (shader->modelMatrixUniform != -1)
+	{
+		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
 	}
 
 	//glBindTexture(GL_TEXTURE_2D, 0);

@@ -1,4 +1,17 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  SkyBox.cpp
-Camera.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  SceneManager.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(181,19): warning C4018: '<': signed/unsigned mismatch
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+  (compiling source file '/SceneManager.cpp')
+      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(17,19):
+          see reference to class template instantiation 'rapidxml::file<char>' being compiled
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(28,9):
+          while compiling class template member function 'rapidxml::file<char>::file(const char *)'
+              C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(17,23):
+              see the first reference to 'rapidxml::file<char>::file' in 'SceneManager::Init'
+  
   NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe

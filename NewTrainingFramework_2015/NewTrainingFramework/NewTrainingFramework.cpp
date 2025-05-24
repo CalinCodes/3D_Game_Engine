@@ -1,6 +1,3 @@
-// NewTrainingFramework.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
@@ -31,9 +28,6 @@ ResourceManager* rm;
 SceneManager* sm;
 
 Camera *camera;
-Matrix MVP;
-
-void readNfg(std::string nfgPath, std::vector<Vertex> &vertexVector, std::vector<unsigned short> &indexVector);
 
 int Init ( ESContext *esContext )
 {
@@ -179,92 +173,4 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-void readNfg(std::string nfgPath, std::vector<Vertex> &vertexVector, std::vector<unsigned short> &indexVector)
-{
-	Vertex aux;
 
-	std::string line;
-	std::ifstream file(nfgPath);
-
-	int nrVertices = 0;
-	std::getline(file, line);
-	
-	nrVertices = std::stoi(&line[12]);
-	for (int i = 0; i < nrVertices; i++)
-	{
-		// pos
-		std::getline(file, line, '[');
-
-		std::getline(file, line, ',');
-		aux.pos.x = std::stof(&line[0]);
-
-		std::getline(file, line, ',');
-		aux.pos.y = std::stof(&line[1]);
-
-		std::getline(file, line, ']');
-		aux.pos.z = std::stof(&line[1]);
-
-		// norm
-		std::getline(file, line, '[');
-
-		std::getline(file, line, ',');
-		aux.norm.x = std::stof(&line[0]);
-
-		std::getline(file, line, ',');
-		aux.norm.y = std::stof(&line[1]);
-
-		std::getline(file, line, ']');
-		aux.norm.z = std::stof(&line[1]);
-
-		// binorm
-		std::getline(file, line, '[');
-
-		std::getline(file, line, ',');
-		aux.binorm.x = std::stof(&line[0]);
-
-		std::getline(file, line, ',');
-		aux.binorm.y = std::stof(&line[1]);
-
-		std::getline(file, line, ']');
-		aux.binorm.z = std::stof(&line[1]);
-
-		// tgt
-		std::getline(file, line, '[');
-
-		std::getline(file, line, ',');
-		aux.tgt.x = std::stof(&line[0]);
-
-		std::getline(file, line, ',');
-		aux.tgt.y = std::stof(&line[1]);
-
-		std::getline(file, line, ']');
-		aux.tgt.z = std::stof(&line[1]);
-
-		// uv
-		std::getline(file, line, '[');
-
-		std::getline(file, line, ',');
-		aux.uv.x = std::stof(&line[0]);
-
-		std::getline(file, line, ']');
-		aux.uv.y = std::stof(&line[1]);
-
-		vertexVector.push_back(aux);
-	}
-	std::getline(file, line);
-
-	std::getline(file, line);
-	indexCount = std::stoi(&line[11]);
-
-	while (std::getline(file, line, ' '))
-	{
-		if (line.length() != 0 && line[line.length() - 1] != '.')
-		{
-			indexVector.push_back((unsigned short)std::stoi(line));
-		}
-
-	}
-
-	file.close();
-	
-}

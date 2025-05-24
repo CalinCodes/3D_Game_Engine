@@ -11,6 +11,9 @@
       <model id="6">
         <file>bus.nfg</file>
       </model>
+      <model id="20">
+        <file>SkyBox.nfg</file>
+      </model>
 		</folder>
 
 		<!-- un tag folder doar specifica folderul comun pentru un grup de modele (pot sa le am in mai multe foldere)
@@ -32,6 +35,10 @@
 				<vs>TerrainShaderVS.vs</vs>
 				<fs>TerrainShaderFS.fs</fs>
 			</shader>
+      <shader id="23">
+        <vs>SkyboxShaderVS.vs</vs>
+        <fs>SkyboxShaderFS.fs</fs>
+      </shader>
 		<!-- si aici se adauga toate shaderele -->
 		</folder>
 		
@@ -80,7 +87,14 @@
 				<wrap_s>CLAMP_TO_EDGE</wrap_s>
 				<wrap_t>CLAMP_TO_EDGE</wrap_t>
 			</texture>
-			<!-- si aici se adauga toate texturile -->
+      <texture id="21">
+        <file>envMap.tga</file>
+        <type>cube</type>
+        <min_filter>LINEAR</min_filter>
+        <mag_filter>LINEAR</mag_filter>
+        <wrap_s>CLAMP_TO_EDGE</wrap_s>
+        <wrap_t>CLAMP_TO_EDGE</wrap_t>
+      </texture>
 		</folder>
 	</textures>	
 </resourceManager>

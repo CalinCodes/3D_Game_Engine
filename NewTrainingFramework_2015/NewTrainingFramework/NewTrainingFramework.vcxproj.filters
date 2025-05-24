@@ -48,6 +48,9 @@
     <ClCompile Include="SkyBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -104,16 +107,22 @@
     <None Include="..\Resources\Shaders\LineShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="..\Resources\Shaders\ModelShaderVS.vs">
-      <Filter>Resources\Shaders</Filter>
-    </None>
-    <None Include="..\Resources\Shaders\ModelShaderFS.fs">
-      <Filter>Resources\Shaders</Filter>
-    </None>
     <None Include="..\..\NewResourcesPacket\Shaders\TerrainShaderFS.fs">
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\..\NewResourcesPacket\Shaders\TerrainShaderVS.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\SkyboxShaderFS.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\SkyboxShaderVS.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderFS.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
   </ItemGroup>
