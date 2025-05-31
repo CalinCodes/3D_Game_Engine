@@ -120,7 +120,7 @@
 			</lights>
 			-->
 		</object>
-    <object id="8">
+    <!--object id="8">
 
       <model>1</model>
       <shader>10</shader>
@@ -128,6 +128,33 @@
       <name>Crocodil_verde2</name>
       <textures>
         <texture id="4"/>
+      </textures>
+      <position>
+        <x>20.5</x>
+        <y>0</y>
+        <z>121.22</z>
+      </position>
+      <rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </rotation>
+      <scale>
+        <x>1.0</x>
+        <y>1.0</y>
+        <z>1.0</z>
+      </scale>
+    </object-->
+
+    <object id="8">
+      <model>19</model>
+      <shader>24</shader>
+      <type>fire</type>
+      <name>Foc</name>
+      <textures>
+        <texture id="31"/>
+        <texture id="32"/>
+        <texture id="33"/>
       </textures>
       <position>
         <x>20.5</x>
@@ -195,7 +222,7 @@
 				<light>1</light>
 			</lights>
 		</object -->
-		<object id="13">
+    <object id="13">
 			<model>generated</model>
 			<shader>3</shader>
 			<type>terrain</type>

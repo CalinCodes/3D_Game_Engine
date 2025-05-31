@@ -1,12 +1,18 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Fire.cpp
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Fire.cpp(28,23): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file '/Fire.cpp')
-  
-  Generating Code...
-  Skipping... (no relevant changes detected)
   Terrain.cpp
-  SkyBox.cpp
-  SceneManager.cpp
-  NewTrainingFramework.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(25,83): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  (compiling source file '/Terrain.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(25,62): warning C4244: 'argument': conversion from 'const int' to 'GLfloat', possible loss of data
+  (compiling source file '/Terrain.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(25,37): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  (compiling source file '/Terrain.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(28,29): warning C4244: 'argument': conversion from 'const int' to 'GLfloat', possible loss of data
+  (compiling source file '/Terrain.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(83,20): warning C4018: '<': signed/unsigned mismatch
+  (compiling source file '/Terrain.cpp')
+  
   NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe

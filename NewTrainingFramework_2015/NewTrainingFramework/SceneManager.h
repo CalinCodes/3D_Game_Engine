@@ -28,7 +28,7 @@ public:
 
 	virtual void Draw(ESContext *esContext);
 	virtual void sendCommonData(ESContext* esContext);
-	void sendSpecificData(ESContext *esContext);
+	virtual void sendSpecificData(ESContext *esContext);
 	virtual void Update(float deltaTime);
 
 };
@@ -68,7 +68,6 @@ public:
 
 class SkyBox : public SceneObject {
 public:
-	void sendCommonData(ESContext* esContext) override;
 	void Update(float deltaTime) override;
 	SkyBox(SceneObject* so);
 };
@@ -79,7 +78,7 @@ public:
 	float u_Time;
 	clock_t lastClock;
 	float speedFactor;
-	Fire();
+	Fire(SceneObject* so);
 	void Update(float deltaTime) override;
-	void Draw(ESContext* esContext) override;
+	void sendSpecificData(ESContext* esContext) override;
 };

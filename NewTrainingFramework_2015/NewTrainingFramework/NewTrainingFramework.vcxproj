@@ -195,6 +195,8 @@
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\NewResourcesPacket\Shaders\FireShaderFS.fs" />
+    <None Include="..\..\NewResourcesPacket\Shaders\FireShaderVS.vs" />
     <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderFS.fs" />
     <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderVS.vs" />
     <None Include="..\..\NewResourcesPacket\Shaders\SkyboxShaderFS.fs" />
@@ -206,6 +208,8 @@
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />
     <None Include="..\..\Readme.doc" />
+    <None Include="FireShaderFS.fs" />
+    <None Include="FireShaderVS.vs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utilities\Utilities.vcxproj">

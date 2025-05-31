@@ -3,11 +3,21 @@
 #include <ctime>
 
 
-Fire::Fire() {
-	lastClock = clock();
-	u_Time = 0.0f;
-	speedFactor = 0.05f;
-	u_DispMax = 1.0f;
+Fire::Fire(SceneObject* so) {
+    this->id = so->id;
+    this->position = so->position;
+    this->rotation = so->rotation;
+    this->scale = so->scale;
+    this->model = so->model;
+    this->shader = so->shader;
+    this->textures = so->textures;
+    this->type = so->type;
+    this->name = so->name;
+    this->depth_test = so->depth_test;
+	this->u_Time = 0.0f;
+	this->u_DispMax = 0.1f;
+	this->speedFactor = 1.0f;
+	this->lastClock = clock();
 }
 
 void Fire::Update(float deltaTime) {
@@ -18,22 +28,16 @@ void Fire::Update(float deltaTime) {
     u_Time = u_Time - floor(u_Time);
 }
 
-void Fire::Draw(ESContext* esContext) {
-    glUseProgram(shader->program);
+void Fire::sendSpecificData(ESContext* esContext)
+{
     GLint timeLoc = glGetUniformLocation(shader->program, "u_Time");
     GLint dispMaxLoc = glGetUniformLocation(shader->program, "u_DispMax");
-    if (timeLoc != -1) glUniform1f(timeLoc, u_Time);
-    if (dispMaxLoc != -1) glUniform1f(dispMaxLoc, u_DispMax);
-
-    for (int i = 0; i < textures.size(); ++i) {
-        glActiveTexture(GL_TEXTURE0 + i);
-        glBindTexture(GL_TEXTURE_2D, textures[i]->textureId);
-        glUniform1i(shader->textureUniform[i], i);
+    if (timeLoc != -1)
+    {
+        glUniform1f(timeLoc, u_Time);
     }
-
-    sendCommonData(esContext);
-    sendSpecificData(esContext);
-
-    glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_SHORT, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    if (dispMaxLoc != -1)
+    {
+        glUniform1f(dispMaxLoc, u_DispMax);
+    }
 }

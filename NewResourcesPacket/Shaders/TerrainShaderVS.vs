@@ -9,7 +9,6 @@ uniform sampler2D u_texture_0;
 precision mediump float;
 uniform vec2 u_uvOffset;
 
-varying vec3 v_color;
 varying vec2 v_uv, v_uv2;
 varying vec3 v_worldPos;
 
@@ -26,5 +25,4 @@ void main()
 	v_worldPos = (u_model * vec4(a_posL, 1.0)).xyz;
 
 	gl_Position = uMVP * new_pos;
-	v_color = a_color;
 }

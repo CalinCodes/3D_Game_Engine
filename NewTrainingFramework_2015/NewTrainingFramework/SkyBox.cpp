@@ -1,12 +1,6 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 
-void SkyBox::sendCommonData(ESContext* esContext)
-{
-	SceneObject::sendCommonData(esContext);
-
-}
-
 void SkyBox::Update(float deltaTime)
 {
 	Camera* camera = SceneManager::getInstance()->getActiveCamera();

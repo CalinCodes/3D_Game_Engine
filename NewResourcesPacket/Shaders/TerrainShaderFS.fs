@@ -1,5 +1,4 @@
 precision mediump float;
-varying vec3 v_color;
 varying vec3 v_worldPos;
 
 varying vec2 v_uv, v_uv2;
@@ -30,6 +29,4 @@ void main()
     vec3 foggedColor = mix(c_final.rgb, u_fogColor, alpha);
     
     gl_FragColor = vec4(foggedColor.rgb, 1.0);
-    //alpha = (d - u_smallRadius)/(u_largeRadius - u_smallRadius);
-    //gl_FragColor = vec4(alpha, 0.0, 0.0, 1.0);
 }

@@ -106,6 +106,13 @@ void SceneManager::Init()
 					SkyBox* skybox = new SkyBox(so);
 					objects.insert(std::pair<int, SceneObject*>(skybox->id, skybox));
 				}
+				else if (so->type == "fire")
+				{
+					rm->loadModel(std::stoi(object->first_node("model")->value()));
+					so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
+					Fire* fire = new Fire(so);
+					objects.insert(std::pair<int, SceneObject*>(fire->id, fire));
+				}
 			}
 		}
 	}
@@ -163,8 +170,13 @@ void SceneObject::Draw(ESContext* esContext)
 	shader->SetFogParameters(sm->fogColor, sm->smallRadius, sm->largeRadius);
 	sendSpecificData(esContext);
 
+
+	int err = glGetError();
 	glDrawElements(GL_TRIANGLES, model->indexCount, GL_UNSIGNED_SHORT, 0);
+	err = glGetError();
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void SceneObject::sendCommonData(ESContext* esContext)
@@ -216,6 +228,11 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	if (shader->MVP != -1)
 	{
 		glUniformMatrix4fv(shader->MVP, 1, GL_FALSE, (float*)MVP.m);
+	}
+
+	if (shader->modelMatrixUniform != -1)
+	{
+		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
 	}
 	/*
 	if (shader->cameraPosUniform != -1) {

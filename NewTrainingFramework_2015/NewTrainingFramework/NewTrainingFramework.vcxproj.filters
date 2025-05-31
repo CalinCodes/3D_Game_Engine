@@ -125,5 +125,17 @@
     <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
+    <None Include="FireShaderFS.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="FireShaderVS.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\FireShaderFS.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\FireShaderVS.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
