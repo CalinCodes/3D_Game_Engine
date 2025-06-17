@@ -46,6 +46,10 @@
         <vs>FireShaderVS.vs</vs>
         <fs>FireShaderFS.fs</fs>
       </shader>
+      <shader id="25">
+        <vs>ReflectionShaderVS.vs</vs>
+        <fs>ReflectionShaderFS.fs</fs>
+      </shader>
 		<!-- si aici se adauga toate shaderele -->
 		</folder>
 		

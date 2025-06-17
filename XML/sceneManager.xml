@@ -283,11 +283,13 @@
     <object id="7">
 
       <model>6</model>
-      <shader>10</shader>
-      <type>normal</type>
+      <shader>25</shader>
+      <type>reflected</type>
       <name>Bus</name>
+      <reflection>0.5</reflection>
       <textures>
         <texture id="5"/>
+        <texture id="21"/>
       </textures>
       <position>
         <x>-220.5</x>

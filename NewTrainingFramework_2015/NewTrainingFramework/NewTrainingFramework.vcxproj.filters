@@ -51,6 +51,9 @@
     <ClCompile Include="Fire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReflectedObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -125,9 +128,6 @@
     <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="FireShaderFS.fs">
-      <Filter>Resources\Shaders</Filter>
-    </None>
     <None Include="FireShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
@@ -135,6 +135,12 @@
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\..\NewResourcesPacket\Shaders\FireShaderVS.vs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\ReflectionShaderFS.fs">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\..\NewResourcesPacket\Shaders\ReflectionShaderVS.vs">
       <Filter>Resources\Shaders</Filter>
     </None>
   </ItemGroup>

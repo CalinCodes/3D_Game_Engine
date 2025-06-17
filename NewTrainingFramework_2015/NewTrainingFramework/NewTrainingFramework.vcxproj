@@ -167,6 +167,7 @@
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="NewTrainingFramework.cpp" />
+    <ClCompile Include="ReflectedObject.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shaders.cpp" />
@@ -199,6 +200,8 @@
     <None Include="..\..\NewResourcesPacket\Shaders\FireShaderVS.vs" />
     <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderFS.fs" />
     <None Include="..\..\NewResourcesPacket\Shaders\ModelShaderVS.vs" />
+    <None Include="..\..\NewResourcesPacket\Shaders\ReflectionShaderFS.fs" />
+    <None Include="..\..\NewResourcesPacket\Shaders\ReflectionShaderVS.vs" />
     <None Include="..\..\NewResourcesPacket\Shaders\SkyboxShaderFS.fs" />
     <None Include="..\..\NewResourcesPacket\Shaders\SkyboxShaderVS.vs" />
     <None Include="..\..\NewResourcesPacket\Shaders\TerrainShaderFS.fs" />
@@ -208,7 +211,6 @@
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs" />
     <None Include="..\Resources\Shaders\TriangleShaderVS.vs" />
     <None Include="..\..\Readme.doc" />
-    <None Include="FireShaderFS.fs" />
     <None Include="FireShaderVS.vs" />
   </ItemGroup>
   <ItemGroup>

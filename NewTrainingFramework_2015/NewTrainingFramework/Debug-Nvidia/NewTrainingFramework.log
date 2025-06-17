@@ -1,18 +1,40 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  SceneManager.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(214,19): warning C4018: '<': signed/unsigned mismatch
+  (compiling source file '/SceneManager.cpp')
+  
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+  (compiling source file '/SceneManager.cpp')
+      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(17,19):
+          see reference to class template instantiation 'rapidxml::file<char>' being compiled
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(28,9):
+          while compiling class template member function 'rapidxml::file<char>::file(const char *)'
+              C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\SceneManager.cpp(17,23):
+              see the first reference to 'rapidxml::file<char>::file' in 'SceneManager::Init'
+  
+  ResourceManager.cpp
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25): warning C4244: 'initializing': conversion from 'std::streamoff' to 'size_t', possible loss of data
+  (compiling source file '/ResourceManager.cpp')
+      C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(40,25):
+      the template instantiation context (the oldest one first) is
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\ResourceManager.cpp(17,19):
+          see reference to class template instantiation 'rapidxml::file<char>' being compiled
+          C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\rapidxml_utils.hpp(28,9):
+          while compiling class template member function 'rapidxml::file<char>::file(const char *)'
+              C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\ResourceManager.cpp(17,23):
+              see the first reference to 'rapidxml::file<char>::file' in 'ResourceManager::Init'
+  
+  ReflectedObject.cpp
+  Generating Code...
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\ResourceManager.cpp(202,1): warning C4715: 'ResourceManager::loadTexture': not all control paths return a value
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\ResourceManager.cpp(175,1): warning C4715: 'ResourceManager::loadModel': not all control paths return a value
+C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\ResourceManager.cpp(229,1): warning C4715: 'ResourceManager::loadShader': not all control paths return a value
+  Skipping... (no relevant changes detected)
   Terrain.cpp
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(25,83): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file '/Terrain.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(25,62): warning C4244: 'argument': conversion from 'const int' to 'GLfloat', possible loss of data
-  (compiling source file '/Terrain.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(25,37): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-  (compiling source file '/Terrain.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(28,29): warning C4244: 'argument': conversion from 'const int' to 'GLfloat', possible loss of data
-  (compiling source file '/Terrain.cpp')
-  
-C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\NewTrainingFramework\Terrain.cpp(83,20): warning C4018: '<': signed/unsigned mismatch
-  (compiling source file '/Terrain.cpp')
-  
+  SkyBox.cpp
+  NewTrainingFramework.cpp
+  Fire.cpp
+Camera.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   NewTrainingFramework.vcxproj -> C:\Users\Calin\Desktop\proiect_2015\NewTrainingFramework_2015\BIN-Nvidia\NewTrainingFramework.exe

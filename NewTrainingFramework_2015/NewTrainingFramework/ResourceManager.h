@@ -56,7 +56,8 @@ public:
 	GLint textureUniform[MAX_TEXTURES], uvAttribute, uv2Attribute;
 	GLint heightUniform, uvOffsetUniform;
 	GLint fogColorUniform, smallRadiusUniform, largeRadiusUniform;
-	GLint cameraPosUniform, modelMatrixUniform;
+	GLint cameraPosUniform, modelMatrixUniform, normalAttribute;
+	GLint reflectionUniform;
 	void SetFogParameters(Vector3& fogColor, float smallRadius, float largeRadius);
 	Shader();
 	~Shader();

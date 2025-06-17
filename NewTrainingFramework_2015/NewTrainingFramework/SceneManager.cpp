@@ -113,6 +113,17 @@ void SceneManager::Init()
 					Fire* fire = new Fire(so);
 					objects.insert(std::pair<int, SceneObject*>(fire->id, fire));
 				}
+				else if (so->type == "reflected")
+				{
+					rm->loadModel(std::stoi(object->first_node("model")->value()));
+					so->model = rm->loadedModels[std::stoi(object->first_node("model")->value())];
+					ReflectedObject* reflected = new ReflectedObject(so);
+					
+					float reflectedAmmount = std::stof(object->first_node("reflection")->value());
+					reflected->reflectedAmmount = reflectedAmmount;
+
+					objects.insert(std::pair<int, SceneObject*>(reflected->id, reflected));
+				}
 			}
 		}
 	}
@@ -202,6 +213,13 @@ void SceneObject::sendCommonData(ESContext* esContext)
 
 	for(int i = 0; i < textures.size() && i < MAX_TEXTURES; i++)
 	{
+		if (textures[i]->tr->type == "cube") {
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, textures[i]->textureId);
+			glUniform1i(shader->textureUniform[i], i);
+			continue;
+		}
+
 		glActiveTexture(GL_TEXTURE0 + i);
 		glBindTexture(GL_TEXTURE_2D, textures[i]->textureId);
 		glUniform1i(shader->textureUniform[i], i);
@@ -234,16 +252,6 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	{
 		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
 	}
-	/*
-	if (shader->cameraPosUniform != -1) {
-		glUniform3f(shader->cameraPosUniform, camera->position.x, camera->position.y, camera->position.z);
-	}
-
-	if (shader->modelMatrixUniform != -1)
-	{
-		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
-	}
-	*/
 }
 
 void SceneObject::sendSpecificData(ESContext* esContext)  

@@ -310,10 +310,8 @@ void Texture::Load()
 			}
 			GLenum faceTarget = GL_TEXTURE_CUBE_MAP_POSITIVE_X + face;
 			GLenum format = (bytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-			glTexImage2D(
-				faceTarget, 0, format,
-				faceWidth, faceHeight, 0, format, GL_UNSIGNED_BYTE, subBuffer
-			);
+			glTexImage2D(faceTarget, 0, format, faceWidth,
+				faceHeight, 0, format, GL_UNSIGNED_BYTE, subBuffer);
 			delete[] subBuffer;
 		}
 	}
@@ -378,6 +376,9 @@ void Shader::Load()
 	fogColorUniform = glGetUniformLocation(program, "u_fogColor");
 
 	modelMatrixUniform = glGetUniformLocation(program, "u_model");
+	normalAttribute = glGetAttribLocation(program, "u_normal");
+
+	reflectionUniform = glGetUniformLocation(program, "u_reflection");
 
 	for (int i = 0; i < MAX_TEXTURES; i++) {
 		std::string uniformName = "u_texture_" + std::to_string(i);
