@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SceneManager.h"
 
-//float totalTime = 0.0f;
 SceneManager* SceneManager::spInstance = NULL;
 
 SceneManager::SceneManager()
@@ -46,6 +45,49 @@ void SceneManager::Init()
 			for (rapidxml::xml_node<>* folder = node->first_node("camera"); folder; folder = folder->next_sibling())
 			{
 				/////////////////////////////////////////// de parsat pentru toate camerele
+			}
+		}
+		if (strcmp(node->name(), "lights") == 0) {
+			for (rapidxml::xml_node<>* lightNode = node->first_node("light"); lightNode; lightNode = lightNode->next_sibling()) {
+				Light* light = new Light();
+				light->id = std::stoi(lightNode->first_attribute("id")->value());
+				std::string type = lightNode->first_attribute("type")->value();
+
+				if (type == "point") {
+					light->type = 0;
+					light->position.x = std::stof(lightNode->first_node("position")->first_node("x")->value());
+					light->position.y = std::stof(lightNode->first_node("position")->first_node("y")->value());
+					light->position.z = std::stof(lightNode->first_node("position")->first_node("z")->value());
+				}
+				else if (type == "directional") {
+					light->type = 1;
+					light->direction.x = std::stof(lightNode->first_node("direction")->first_node("x")->value());
+					light->direction.y = std::stof(lightNode->first_node("direction")->first_node("y")->value());
+					light->direction.z = std::stof(lightNode->first_node("direction")->first_node("z")->value());
+				}
+				else if (type == "spot") {
+					light->type = 2;
+					light->position.x = std::stof(lightNode->first_node("position")->first_node("x")->value());
+					light->position.y = std::stof(lightNode->first_node("position")->first_node("y")->value());
+					light->position.z = std::stof(lightNode->first_node("position")->first_node("z")->value());
+					light->direction.x = std::stof(lightNode->first_node("direction")->first_node("x")->value());
+					light->direction.y = std::stof(lightNode->first_node("direction")->first_node("y")->value());
+					light->direction.z = std::stof(lightNode->first_node("direction")->first_node("z")->value());
+					light->spotCutoff = std::stof(lightNode->first_node("spotCutoff")->value());
+					light->spotExponent = std::stof(lightNode->first_node("spotExponent")->value());
+				}
+
+				light->colorDiffuse.x = std::stof(lightNode->first_node("diffuse")->first_node("r")->value());
+				light->colorDiffuse.y = std::stof(lightNode->first_node("diffuse")->first_node("g")->value());
+				light->colorDiffuse.z = std::stof(lightNode->first_node("diffuse")->first_node("b")->value());
+
+				light->colorSpecular.x = std::stof(lightNode->first_node("specular")->first_node("r")->value());
+				light->colorSpecular.y = std::stof(lightNode->first_node("specular")->first_node("g")->value());
+				light->colorSpecular.z = std::stof(lightNode->first_node("specular")->first_node("b")->value());
+
+				light->specPower = std::stof(lightNode->first_node("specPower")->value());
+
+				lights.push_back(light);
 			}
 		}
 		if (strcmp(node->name(), "objects") == 0)
@@ -127,6 +169,7 @@ void SceneManager::Init()
 			}
 		}
 	}
+
 }
 
 Camera* SceneManager::getActiveCamera()
@@ -202,7 +245,7 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	yRotationMatrix.SetRotationY(rotation.y);
 	zRotationMatrix.SetRotationZ(rotation.z);
 	modelMatrix = scaleMatrix * xRotationMatrix * yRotationMatrix * zRotationMatrix * translationMatrix;
-	
+
 	Matrix MVP = modelMatrix * camera->viewMatrix * camera->perspectiveMatrix;
 	ResourceManager* rm = ResourceManager::getInstance();
 
@@ -252,6 +295,29 @@ void SceneObject::sendCommonData(ESContext* esContext)
 	{
 		glUniformMatrix4fv(shader->modelMatrixUniform, 1, GL_FALSE, (float*)modelMatrix.m);
 	}
+
+	if (shader->normalAttribute != -1) {
+		glEnableVertexAttribArray(shader->normalAttribute);
+		glVertexAttribPointer(shader->normalAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, norm));
+	}
+
+
+	glUniform3f(glGetUniformLocation(shader->program, "u_ambientColor"), sm->ambientColor.x, sm->ambientColor.y, sm->ambientColor.z);
+	glUniform1f(glGetUniformLocation(shader->program, "u_ambientRatio"), sm->ambientRatio);
+
+	glUniform1i(glGetUniformLocation(shader->program, "u_numLights"), sm->lights.size());
+	for (int i = 0; i < sm->lights.size(); ++i) {
+		glUniform3fv(glGetUniformLocation(shader->program, ("u_lightPositions[" + std::to_string(i) + "]").c_str()), 1, &(sm->lights[i])->position.x);
+		glUniform3fv(glGetUniformLocation(shader->program, ("u_lightDirections[" + std::to_string(i) + "]").c_str()), 1, &(sm->lights[i])->direction.x);
+		glUniform3fv(glGetUniformLocation(shader->program, ("u_lightDiffuse[" + std::to_string(i) + "]").c_str()), 1, &(sm->lights[i])->colorDiffuse.x);
+		glUniform3fv(glGetUniformLocation(shader->program, ("u_lightSpecular[" + std::to_string(i) + "]").c_str()), 1, &(sm->lights[i])->colorSpecular.x);
+		glUniform1f(glGetUniformLocation(shader->program, ("u_lightSpecPower[" + std::to_string(i) + "]").c_str()), sm->lights[i]->specPower);
+		glUniform1i(glGetUniformLocation(shader->program, ("u_lightTypes[" + std::to_string(i) + "]").c_str()), sm->lights[i]->type);
+		glUniform1f(glGetUniformLocation(shader->program, ("u_lightSpotCutoff[" + std::to_string(i) + "]").c_str()), sm->lights[i]->spotCutoff);
+		glUniform1f(glGetUniformLocation(shader->program, ("u_lightSpotExponent[" + std::to_string(i) + "]").c_str()), sm->lights[i]->spotExponent);
+	}
+	glUniform1f(glGetUniformLocation(shader->program, "u_kspec"), kspec);
+	glUniform1f(glGetUniformLocation(shader->program, "u_kdiff"), kdiff);
 }
 
 void SceneObject::sendSpecificData(ESContext* esContext)  

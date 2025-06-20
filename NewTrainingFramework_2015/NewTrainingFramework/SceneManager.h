@@ -26,11 +26,27 @@ public:
 	std::string name;
 	int depth_test;
 
+	float kspec = 1.0f;
+	float kdiff = 1.0f;
+
 	virtual void Draw(ESContext *esContext);
 	virtual void sendCommonData(ESContext* esContext);
 	virtual void sendSpecificData(ESContext *esContext);
 	virtual void Update(float deltaTime);
 
+};
+
+class Light {
+public:
+	int id;
+	int type; // POINT, DIRECTIONAL, SPOT
+	Vector3 position;
+	Vector3 direction;
+	Vector3 colorDiffuse;
+	Vector3 colorSpecular;
+	float specPower;
+	float spotCutoff;
+	float spotExponent;
 };
 
 class SceneManager
@@ -47,6 +63,10 @@ public:
 
 	std::map<int, SceneObject*> objects;
 	std::vector<Camera*> cameras;
+	std::vector<Light*> lights;
+
+	Vector3 ambientColor = Vector3(0.2f, 0.2f, 0.2f);
+	float ambientRatio = 0.5f;
 	
 	Camera* getActiveCamera();
 	int activeCamera = 0;
