@@ -12,6 +12,9 @@ uniform vec2 u_uvOffset;
 varying vec2 v_uv, v_uv2;
 varying vec3 v_worldPos;
 
+attribute vec3 u_normal;
+varying vec3 v_worldNormal;
+
 void main()
 {
 	v_uv = a_uv + u_uvOffset;
@@ -23,6 +26,7 @@ void main()
 	new_pos.y += c_blend.r * u_height.r + c_blend.g * u_height.g + c_blend.b * u_height.b;
 
 	v_worldPos = (u_model * vec4(a_posL, 1.0)).xyz;
+	v_worldNormal = normalize(mat3(u_model) * u_normal);
 
 	gl_Position = uMVP * new_pos;
 }

@@ -1,14 +1,14 @@
 precision mediump float;
 
-attribute vec3 a_posL;          // Local position of the vertex
-attribute vec3 u_normal;        // Local normal of the vertex
-attribute vec2 a_uv;            // UV coordinates
+attribute vec3 a_posL;
+attribute vec3 u_normal;
+attribute vec2 a_uv;
 
-uniform mat4 uMVP;              // Model-View-Projection matrix
-uniform mat4 u_model;           // Model matrix
+uniform mat4 uMVP;
+uniform mat4 u_model;
 
-varying vec2 v_uv;              // UV coordinates passed to the fragment shader
-varying vec3 v_worldPos;        // World position passed to the fragment shader
+varying vec2 v_uv;
+varying vec3 v_worldPos;
 varying vec3 v_worldNormal;
 
 void main()
