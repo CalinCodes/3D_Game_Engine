@@ -13,27 +13,26 @@
 #include "Camera.h"
 #include "Globals.h"
 
-class SceneObject {
-public:
-	int id;
-	Vector3 position;
-	Vector3 rotation;
-	Vector3 scale;
-	Model *model;
-	Shader *shader;
-	std::vector<Texture*> textures;
-	std::string type;
-	std::string name;
-	int depth_test;
+class SceneObject {  
+public:  
+   int id;  
+   Vector3 position;  
+   Vector3 rotation;  
+   Vector3 scale;  
+   Model *model;  
+   Shader *shader;  
+   std::vector<Texture*> textures;  
+   std::string type;  
+   std::string name;  
+   int depth_test;  
 
-	float kspec = 1.0f;
-	float kdiff = 1.0f;
+   virtual float getKspec() const { return 1.0f; }
+   virtual float getKdiff() const { return 1.0f; }
 
-	virtual void Draw(ESContext *esContext);
-	virtual void sendCommonData(ESContext* esContext);
-	virtual void sendSpecificData(ESContext *esContext);
-	virtual void Update(float deltaTime);
-
+   virtual void Draw(ESContext *esContext);  
+   virtual void sendCommonData(ESContext* esContext);  
+   virtual void sendSpecificData(ESContext *esContext);  
+   virtual void Update(float deltaTime);  
 };
 
 class Light {
@@ -78,10 +77,12 @@ public:
 class Terrain : public SceneObject {
 public:
 	const int nrCells = 100, dimCell = 10, offsetY = -100;
+	virtual float getKspec() const override { return 0.1f; }
+	virtual float getKdiff() const override { return 1.0f; }
 	Vector3 terrainHeights;
 	Vector2 uvOffset;
 	void generateModel();
-	void sendCommonData(ESContext* esContext) override;
+	void sendSpecificData(ESContext* esContext) override;
 	void Update(float deltaTime) override;
 	Terrain(SceneObject* so);
 };

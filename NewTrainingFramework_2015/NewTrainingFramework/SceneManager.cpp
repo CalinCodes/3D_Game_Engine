@@ -316,8 +316,8 @@ void SceneObject::sendCommonData(ESContext* esContext)
 		glUniform1f(glGetUniformLocation(shader->program, ("u_lightSpotCutoff[" + std::to_string(i) + "]").c_str()), sm->lights[i]->spotCutoff);
 		glUniform1f(glGetUniformLocation(shader->program, ("u_lightSpotExponent[" + std::to_string(i) + "]").c_str()), sm->lights[i]->spotExponent);
 	}
-	glUniform1f(glGetUniformLocation(shader->program, "u_kspec"), kspec);
-	glUniform1f(glGetUniformLocation(shader->program, "u_kdiff"), kdiff);
+	glUniform1f(glGetUniformLocation(shader->program, "u_kspec"), this->getKspec());
+	glUniform1f(glGetUniformLocation(shader->program, "u_kdiff"), this->getKdiff());
 }
 
 void SceneObject::sendSpecificData(ESContext* esContext)  
